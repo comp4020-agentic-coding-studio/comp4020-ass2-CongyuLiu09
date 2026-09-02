@@ -1,0 +1,451 @@
+---
+title: "Week 11 — The same car, different countries"
+description: Is a dashboard's "urgent" the same everywhere, or is it a local dialect set by regulation, convention and habit?
+---
+
+{/* _class: impact */}
+
+# Week 11
+
+## The same car, different countries
+
+Is a dashboard's "urgent" the same everywhere, or is it a local dialect?
+
+```notes
+Open by asking whether anyone in the room has driven both a UK/Australian
+(RHD) car and a US/European (LHD) car, or owned a car sold in more than one
+market. Most rooms have at least one grey-import or rental story. Use it —
+this week runs on real, checkable regulatory and layout differences, not
+abstraction.
+```
+
+---
+
+## Learning objectives
+
+By the end of this week you should be able to:
+
+- **Identify** at least two dashboard features that are mandatory in one
+  regulatory market and optional, delayed, or absent in another
+- **Explain** how a rating criterion from a body like Euro NCAP propagates
+  into a standard-fit dashboard feature without ever becoming a law
+- **Compare** the seatbelt-reminder or speed-limit-recognition alert as
+  implemented under Euro NCAP/EU regulation versus US NHTSA regulation
+  versus Japanese regulation
+- **Explain why** a right-hand-drive and left-hand-drive version of the same
+  model are not simply mirror images of each other's scanning demands
+- **Argue**, with a stated trade-off, whether a harmonised minimum alert
+  vocabulary would help or hurt drivers in at least one specific market
+
+---
+
+## Opening example: one platform, three dashboards
+
+Take a single global model — a mainstream compact SUV built on one platform
+and sold, with only modest changes, in Europe, North America and Japan. Pop
+the bonnet and the platform is close to identical. Look at the instrument
+binnacle instead, and it isn't. The European-market car very likely has a
+standard speed-limit-recognition display and an escalating, multi-stage
+seatbelt chime for every seat, front and rear. The US-market car very likely
+has neither as standard, or has a shorter, less insistent seatbelt chime
+that legally only has to run for a matter of seconds. The Japanese-market
+car may mandate an entirely different feature — automatic emergency braking
+as standard even on the most basic domestic trim — years before that became
+a US requirement.
+
+---
+
+## Opening example: what the car is actually saying, and to whom
+
+None of this is the manufacturer being inconsistent. Each version of the
+dashboard is answering the question "what is urgent enough to interrupt this
+driver?" correctly, for the regulatory environment it was built to satisfy.
+The car isn't confused about what matters — the definition of "matters
+enough to alert on" was handed to the manufacturer by a different authority
+in each market, before a single line of dashboard software was written. That
+is the whole premise of this week: urgency on a dashboard is not measured,
+it's assigned, and it's assigned locally.
+
+```notes
+Land this before moving on: students will want to treat one market's version
+as "the real one" and the others as compromises. Push back — each is a
+correct answer to a different question, not a degraded answer to the same
+one.
+```
+
+---
+
+## Regulation as grammar, not just rules
+
+Three bodies do most of the work in this week's case study, and they are not
+interchangeable:
+
+- **Euro NCAP** — a voluntary, ratings-based body. It doesn't write law, but
+  a five-star rating is commercially important enough in Europe that its
+  scoring criteria function as a de facto mandate for anything sold there
+- **US NHTSA** — sets binding Federal Motor Vehicle Safety Standards
+  (FMVSS), and separately runs its own New Car Assessment Program (NCAP)
+  rating, but the binding standard and the rating criteria don't always move
+  in step, and don't always match Euro NCAP's
+- **Japan's regulator (MLIT) and JNCAP** — sets its own type-approval
+  requirements and runs its own ratings program, on its own schedule, shaped
+  by a market with its own vehicle mix (kei cars are a large share of
+  Japanese sales and have their own rules)
+
+A feature can be a hard legal requirement in one of these systems, a
+rating-only incentive in a second, and simply not addressed in a third.
+
+---
+
+## Real example: Intelligent Speed Assistance, mandated in the EU
+
+The EU's General Safety Regulation (Regulation 2019/2144) required
+Intelligent Speed Assistance — a system that reads speed-limit signs or
+digital map data and displays, and can gently push back against, the current
+limit — on all new vehicle types from July 2022, extending to all new
+vehicles registered from July 2024. This is why a current Volkswagen Golf or
+Ford Focus sold in the EU shows a speed-limit icon and a soft warning chime
+that a nearly identical Focus or Golf sold in the US does not carry as
+standard. The feature is useful for this week specifically because it is a
+hard EU legal mandate with no equivalent US federal requirement — the
+clearest possible case of the same platform, two vocabularies.
+
+---
+
+## Real example: the seatbelt chime, mandated two different ways
+
+The US federal standard (FMVSS 208) requires a seatbelt warning light and an
+audible chime, but historically only for a brief minimum duration — a few
+seconds is enough to satisfy the letter of the rule. Euro NCAP, by contrast,
+has for years awarded rating points only to seatbelt reminders that escalate
+— getting louder, more frequent, or adding a visual pulse the longer the
+belt stays unfastened — and, in its more recent protocols, only awards full
+points when that escalation covers rear seats too. Manufacturers chasing a
+five-star Euro NCAP rating fitted the escalating version across whole
+European ranges well before any EU law forced the point. The US-market
+version of the same model can legally ship with the minimum chime instead,
+and often has.
+
+---
+
+## Comparison within the core content: Euro-spec vs US-spec, same model
+
+| Aspect | Euro-spec dashboard | US-spec dashboard |
+|---|---|---|
+| Speed-limit recognition | Standard, EU-mandated since 2024 | Not federally required; often absent or a paid option |
+| Seatbelt chime | Escalating, often covers all seats | Legally sufficient after a few seconds; may not escalate |
+| Driver behind the wheel | Sees continuous ambient reminders of both limit and belt status | Sees a shorter, more easily satisfied version of the same category of alert |
+| Why the gap exists | Euro NCAP scoring pressure plus a binding EU mandate | No equivalent federal mandate for speed-limit display; a weaker minimum chime requirement |
+
+Same platform, same underlying risk, two different answers to "how insistent
+should this be."
+
+---
+
+> **Suggested image:** A European-market and North American-market
+> instrument cluster from the same compact car model (for example, a current
+> Volkswagen Golf/Jetta or Ford Focus/equivalent), photographed with their
+> respective speed-limit or seatbelt telltales visible
+> **Notice:** Which telltales appear on one cluster and simply don't exist
+> as an icon at all on the other, rather than just being switched off
+> **Annotation:** A circle around the Euro-spec speed-limit-recognition icon
+> with a line to the label "no equivalent icon exists here" pointing at the
+> same position on the US-spec cluster
+> **Caption:** "Same platform, same dashboard architecture — one market's
+> regulator asked for an icon the other market's regulator never required."
+> **Alt text:** "Two car instrument clusters from the same model side by
+> side, one showing a speed-limit-recognition icon and escalating seatbelt
+> warning graphic, the other lacking the speed-limit icon and showing a
+> simpler seatbelt warning light."
+
+---
+
+## The process: from a rating criterion to a dashboard icon
+
+The gap between markets isn't random — it follows a repeatable chain:
+
+1. **A safety body sets a criterion** — Euro NCAP adds a scoring point for
+   escalating seatbelt reminders; the EU General Safety Regulation mandates
+   Intelligent Speed Assistance outright
+2. **A manufacturer decides standard vs optional, per market** — fit it as
+   standard where the rating or law demands it, leave it optional or absent
+   where neither body has asked for it
+3. **The implementation is localised** — icon conventions, spoken or
+   written language for any voice/text component, and RHD/LHD instrument
+   layout are all adapted for that specific market's build
+4. **The same platform ships with a different alert vocabulary** — a Golf
+   built in the same factory carries a materially different dashboard
+   depending on the country it's destined for
+
+Steps 1–2 are regulatory and commercial decisions made long before step 4's
+dashboard exists.
+
+```comment
+This four-step chain is the spine of the week, the same way the fault-to-
+judgement chain was the spine of week 5. Nearly every later slide — the
+Japan example, the RHD/LHD point, the case study — is really asking "which
+step diverged, and why."
+```
+
+---
+
+## Real example: Japan's own schedule, Toyota and Honda
+
+Japan's path doesn't track Europe's or the US's. Japanese manufacturers and
+MLIT moved to make automatic emergency braking (AEB) standard on new
+kei-cars and many mainstream domestic models well ahead of equivalent US
+federal action — an industry-government push through the early 2020s aimed
+specifically at Japan's older-driver demographic and dense low-speed urban
+driving. A domestic-market Toyota or Honda kei car can carry AEB and its
+associated dashboard warning as standard while a similarly positioned
+small car sold new in the US, at the same time, did not have to. This
+matters for the week because it shows the divergence isn't simply "Europe
+strict, US lenient, Japan somewhere in between" — each market leads on the
+feature that answers its own most pressing risk profile.
+
+---
+
+## Real example: Tesla and the software-defined shortcut
+
+Tesla is useful here for the opposite reason: because its dashboard is
+software-defined rather than fixed at the factory, Tesla can localise an
+alert's threshold, language or presence with an over-the-air update rather
+than a hardware or trim change. Where a conventional manufacturer's
+market-by-market divergence is baked in at production, Tesla's is, in
+principle, adjustable after the car is already on the road. That doesn't
+remove the underlying regulatory divergence — Tesla still has to satisfy
+each market's requirements separately — but it changes *how* the divergence
+gets implemented, and it's the thread this week hands forward to week 12.
+
+---
+
+## Layout is a language too — and it isn't just mirrored
+
+It's tempting to assume a right-hand-drive car is simply a left-hand-drive
+car flipped left-to-right: move the wheel, mirror the cluster, done. The
+instrument binnacle position relative to the door pillar does mirror. What
+doesn't automatically come along for the ride is the driver's *scanning
+habit* — the learned, practiced sequence of glances between road, cluster,
+mirrors and blind spot, built over years around one specific geometry and
+one specific side of the road to watch for oncoming traffic and merging
+vehicles.
+
+---
+
+> **Suggested image:** A comparison of the same vehicle model's dashboard in
+> right-hand-drive and left-hand-drive configuration, photographed from the
+> driver's seat to show the instrument cluster's position relative to the
+> door pillar and A-pillar in each
+> **Notice:** That the cluster itself is a mirror image, but the driver's
+> sightline to the nearest wing mirror, blind-spot pillar and oncoming-lane
+> side of the road is not simply the same habit reflected — it's a genuinely
+> different set of glances
+> **Annotation:** Two glance-path arrows overlaid on each photo — road to
+> cluster to mirror to blind spot — drawn to show the paths are mirror
+> images of each other in geometry but not necessarily in how quickly a
+> driver trained on one executes the other
+> **Caption:** "Flipping the wheel flips the geometry. It doesn't
+> automatically flip a decade of scanning habit with it."
+> **Alt text:** "Two photographs taken from the driver's seat of the same
+> car model, one right-hand-drive and one left-hand-drive, showing the
+> instrument cluster's mirrored position relative to the door and
+> windscreen pillar."
+
+---
+
+## Real example: the indicator stalk that didn't mirror
+
+A concrete, well-documented case of layout not simply mirroring: grey-market
+right-hand-drive conversions of American pickup trucks for Australia — Ford
+F-150 and Ram 1500 conversions carried out by firms such as RMA Automotive
+and Walkinshaw — have been reported by Australian motoring press to leave
+the indicator stalk on the left-hand-drive-convention side, opposite the
+side Australian drivers have used their whole driving lives, because fully
+re-engineering the steering column is costly. The wheel and cluster moved.
+The habit-critical stalk position, on some of these conversions, didn't
+follow — and drivers used to Japanese- or European-convention RHD cars
+notice immediately.
+
+---
+
+## Real example: Mazda and the JDM/UK stalk convention
+
+The same point shows up even without a conversion involved. Japanese
+domestic-market cars, including Mazda's, commonly place the indicator stalk
+on the right and the wiper stalk on the left, matching the steering wheel
+side. British-built or European-sourced right-hand-drive cars sold in the
+UK, by contrast, typically keep the indicator on the left stalk, unchanged
+from the left-hand-drive layout, purely moving the wheel and pedals. Two
+genuinely different RHD conventions exist side by side, both long-
+established, and a driver moving between a JDM import and a UK-market car
+of the same nominal handedness still has to relearn which stalk does what.
+
+---
+
+## Case study: the same telltale, tuned three ways
+
+Bring the regulatory and layout threads together on one alert pair —
+speed-limit recognition and seatbelt reminders — across the three markets
+this week has been building toward. Euro NCAP's rating pressure plus the EU
+General Safety Regulation gave Europe a standard, escalating, all-seats
+version of both. The US federal minimum gave American drivers a legally
+sufficient but far less insistent version of each, with no federal push
+behind speed-limit display specifically. Japan's own schedule prioritised a
+different feature entirely — AEB as standard, ahead of either — reflecting
+a domestic risk profile built around an ageing driver population and dense
+low-speed streets rather than the motorway-speed risk profile Euro NCAP's
+criteria were largely built to address.
+
+---
+
+## Case study: strengths, weaknesses, consequences for the driver
+
+The European approach's strength is consistency — a driver who learns the
+escalating chime once can trust it will behave the same way in almost any
+new European car. Its weakness is that "more insistent, in every seat" has a
+real cost in driver annoyance, which is exactly the alarm-fatigue trade-off
+week 10 raised. The US approach's strength is that manufacturers retain more
+freedom to tune insistence to what a specific model's buyers tolerate; its
+weakness is that "legally sufficient" and "actually effective" are not the
+same claim, and the gap is measurable in seatbelt-usage statistics between
+regions. Japan's approach shows a third strength — leading on the feature
+that matches the market's actual risk — at the cost of a driver moving
+between Japan and Europe finding neither market's "most urgent" feature
+familiar.
+
+---
+
+## Case study: a suggested synthesis
+
+None of the three approaches is simply correct. A plausible synthesis, and
+one worth arguing with rather than accepting outright, is a harmonised
+*minimum* alert vocabulary — a small, shared core (a small number of
+universally red-tier alerts, a shared minimum seatbelt-chime escalation
+curve) that every market's regulator agrees to, layered underneath whatever
+market-specific features each region's risk profile and rating body still
+add on top. That would mean a driver's most safety-critical alerts transfer
+between countries even while everything above that floor stays locally
+tuned — trading some of each market's autonomy for a driver's ability to
+carry urgency literacy across a border.
+
+---
+
+## Comparison: the same alert, three regulatory regimes
+
+| Feature | Euro NCAP / EU | US NHTSA | Japan (MLIT / JNCAP) |
+|---|---|---|---|
+| Speed-limit recognition display | Mandated for all new vehicles from July 2024 (GSR) | No federal mandate; rating incentive only, inconsistently applied | No equivalent nationwide mandate at the same point |
+| Seatbelt reminder | Escalating, rating-driven, increasingly covers rear seats | Legally required but minimum duration can be brief (FMVSS 208) | Required, on a separate domestic schedule and standard |
+| Automatic emergency braking | Rating-driven, widely standard by mid-2020s | Federal mandate (FMVSS 127) targeted for 2029 | Industry-government push made it standard on many domestic models earlier |
+| Driving side / cluster layout | LHD across almost all EU markets | LHD | RHD |
+
+The table's real point isn't any single cell — it's that no column is
+strictly "ahead." Each regime leads somewhere and lags somewhere else.
+
+---
+
+## Classroom exercise: build your own three-market comparison
+
+Pick one dashboard alert this course hasn't already used as its running
+example — a tyre-pressure telltale, a driver-drowsiness warning, a blind-
+spot indicator, anything with a plausible regulatory story. Working in
+small groups, research and answer:
+
+1. Is this alert mandated by law, incentivised by a rating body, or neither,
+   in the EU, the US, and Japan?
+2. Where the requirement differs, is the gap regulatory, commercial, or a
+   naming/localisation difference dressed up as a bigger gap than it is?
+3. If you had to pick one market's version as the floor for a harmonised
+   minimum, which would you pick, and what would the other two markets lose?
+4. Name one RHD/LHD layout consequence, beyond mirroring, that this alert's
+   on-screen position would need to account for.
+
+```notes
+Sample direction: tyre-pressure monitoring is a strong pick — mandated in
+the US (TREAD Act, from 2007) well before it became mandatory in the EU
+(2014) or Japan, so this exercise usefully flips the "Europe always leads"
+assumption groups will have absorbed from the rest of the week. Push groups
+that pick a purely cosmetic or naming difference to find a second, more
+substantive alert instead.
+```
+
+---
+
+## Mini knowledge check
+
+1. Name one dashboard feature that is a hard legal mandate in the EU and
+   not in the US, and name the regulation responsible.
+2. Explain, in one sentence, how a Euro NCAP rating criterion can end up
+   standard-fit on a car without ever becoming a law.
+3. A right-hand-drive and left-hand-drive version of the same model are
+   often described as "mirror images." What, specifically, does that
+   description leave out?
+4. Give one real manufacturer or market example from this week where Japan,
+   not Europe, led on a safety feature.
+
+```notes
+Q1: any reasonable pairing — e.g. Intelligent Speed Assistance under the
+EU's General Safety Regulation (2019/2144), no federal US equivalent.
+Q2: a five-star Euro NCAP rating is commercially valuable enough in Europe
+that manufacturers fit the rated feature as standard to chase the rating,
+without any law requiring it.
+Q3: it leaves out the driver's learned scanning habit — glance path between
+road, cluster, mirrors and blind spot — which doesn't automatically transfer
+just because the geometry is mirrored; also leaves out convention
+differences like indicator-stalk side that aren't simply mirrored either.
+Q4: automatic emergency braking standard on Japanese domestic kei-cars and
+many mainstream models ahead of the US federal AEB mandate.
+```
+
+---
+
+## Summary
+
+- A dashboard's alert vocabulary is not a fixed, universal fact about a
+  vehicle — it's assigned market by market, by regulation, rating pressure
+  and convention
+- Euro NCAP, US NHTSA and Japan's MLIT/JNCAP don't just enforce different
+  minimums, they operate through different mechanisms — binding law, rating
+  incentive, and domestic industry-government agreement — and don't move on
+  the same schedule
+- A single platform can ship with genuinely different standard-fit alerts
+  depending on destination market, before a single unit is built
+- Right-hand-drive and left-hand-drive versions of the same model mirror the
+  instrument layout but not automatically the driver's scanning habit or
+  every regional switchgear convention
+- A harmonised minimum alert vocabulary is a real, arguable proposal, not a
+  settled answer — it trades local autonomy for cross-border urgency
+  literacy
+
+---
+
+## Bridge to week 12: what would you actually keep?
+
+This week's whole argument is that almost nothing about a dashboard's
+current vocabulary is inevitable — not which alerts exist, not how urgent
+they're allowed to be, not where the cluster sits relative to the driver.
+Regulation, rating pressure, historical accident, and a century of
+convention decided all of it, market by market. Week 12 asks the question
+that follows directly from that: if none of this vocabulary is a fixed fact,
+and a software-defined dashboard like Tesla's or Rivian's can now be
+redesigned and re-shipped after the car is already sold, what would you
+actually keep if you were designing this vocabulary today, with no legacy
+instrument cluster to imitate at all?
+
+```notes
+Explicit hand-off for students: everything this week showed as contingent —
+which alerts are mandatory, how insistent they're allowed to be, where the
+cluster sits — is exactly the list week 12 asks them to either defend or
+discard from scratch. Worth mentioning the final project is due at the end
+of week 12, so this argument is also directly usable material for it.
+```
+
+---
+
+{/* _class: impact */}
+
+## Next: Week 12 — The next dashboard
+
+The capstone: software-defined dashboards as a maintained UI, not a fixed
+instrument — and the question of what's worth keeping with no legacy left
+to imitate.

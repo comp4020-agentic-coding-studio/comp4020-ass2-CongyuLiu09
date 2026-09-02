@@ -1,0 +1,414 @@
+---
+title: The idiot light
+description:
+  Week 3 — what is lost, and what is gained, when a continuous measurement
+  becomes a single light
+---
+
+{/* _class: impact */}
+
+# Week 3: The idiot light
+
+## What is lost, and what is gained, when a continuous measurement becomes a single light?
+
+From the 1950s–60s US gauge-to-light shift to the modern check-engine light
+
+```notes
+Open by asking the room: how many of you have ever looked at your own
+check-engine light and known, from the light alone, what was wrong? Nobody's
+hand goes up. That's the whole lecture.
+```
+
+---
+
+## Learning objectives
+
+By the end of this week you should be able to:
+
+- **identify** whether a given telltale is switched from a continuous signal
+  or a genuinely binary one
+- **explain why** US manufacturers replaced oil-pressure and ammeter gauges
+  with warning lights in the 1950s–60s, in the terms manufacturers themselves
+  used
+- **compare** a continuous gauge and a single warning light across
+  precision, glanceability, cost, and behaviour right before failure
+- **describe** why the check-engine light is the idiot light's logic taken
+  to its most ambiguous extreme
+- **propose** at least one concrete way to recover some of the lost
+  information without returning to a full gauge
+
+---
+
+## Opening example: the light comes on
+
+You're driving. An amber engine-shaped icon lights up on the cluster. No
+number, no word, no colour change if it gets worse. It stays on, steady,
+until you turn the engine off and on again or a mechanic clears it.
+
+That single icon is standing in for one of several hundred possible stored
+diagnostic trouble codes — a loose fuel cap, a failing oxygen sensor, a
+misfiring cylinder that could be quietly destroying your catalytic converter
+right now. The car knows which one. The dashboard doesn't tell you.
+
+---
+
+## Opening example: what the driver actually knows
+
+Everything the check-engine light gives the driver is contained in the fact
+that it is *on*. It does not say:
+
+- how urgent — pull over now, or fine until the weekend
+- how expensive — a $2 fuel cap or a $2,000 catalytic converter
+- whether it's getting worse — the light doesn't brighten, blink faster, or
+  change colour as a small problem becomes a large one (with one narrow
+  exception we'll get to)
+
+This is the end state of a design lineage that starts with the oil-pressure
+gauge disappearing from a 1958 Chevrolet. Today's lecture traces that
+lineage.
+
+---
+
+## What a gauge encodes that a light throws away
+
+A continuous gauge carries at least three kinds of information a binary
+light cannot:
+
+1. **Magnitude** — not just "low," but *how* low: 15 psi is not 2 psi.
+2. **Rate of change** — a needle drifting down over ten minutes looks
+   different from one that drops in a second; a light only ever switches.
+3. **Trend across time** — a driver who checks the gauge daily builds a
+   mental baseline ("it usually sits just above centre") and notices
+   deviation from *their* car's normal, not a generic threshold.
+
+A light collapses all three into one fact: are we above the line, or below
+it. That is not a smaller version of the same information — it is a
+different kind of information.
+
+---
+
+## Why manufacturers made the swap
+
+Through the 1950s, US manufacturers' own research kept turning up the same
+result: a large share of drivers either never looked at the oil-pressure or
+ammeter gauge, or looked at it without knowing what a normal reading was for
+their car. An instrument that isn't read correctly isn't delivering
+continuous information at all — it's delivering nothing, while still costing
+dashboard space, wiring, and a sending unit to manufacture.
+
+Read that way, the decision wasn't a downgrade. It was a correction: stop
+paying for precision nobody was using, and spend the saving on a signal
+nobody can misread. The idiot light is a rational response to a real
+measured failure of the gauge, not just cheapness.
+
+---
+
+## The mechanism: how an idiot light actually works
+
+An oil-pressure telltale is wired to a **pressure switch**, not a
+pressure sensor. The switch has exactly one job: close a circuit (lighting
+the lamp) when pressure falls below a fixed threshold, and open it
+(extinguishing the lamp) above that threshold. There is no wiring path for
+"pressure is fine but declining" — the switch physically cannot represent
+it. The ammeter's replacement, an idiot light on the charging system, works
+the same way off a voltage comparator.
+
+This is the process worth holding onto for the rest of the week: **a
+continuous physical quantity, reduced to one threshold, reduced to one
+circuit state, reduced to one lamp.** Every later telltale — tyre pressure,
+brake fluid, check engine — inherits this same shape.
+
+---
+
+## Process: from sensor reading to lit lamp
+
+| Stage | What exists | What survives to the next stage |
+| --- | --- | --- |
+| 1. Continuous signal | Oil pressure, 0–80 psi, changing constantly | Everything |
+| 2. Threshold check | Compare reading to a fixed cutoff (e.g. 7 psi) | One bit: above / below |
+| 3. Binary decision | "Fine" or "not fine" — nothing in between | The bit only |
+| 4. Single light | Lamp off, or lamp on | Nothing more than "attend now" |
+
+Every value from 8 psi to 80 psi is stage-1 information that stage-4 renders
+identically to every other value in that range: **fine**. The driver at 9
+psi and the driver at 79 psi see the same dashboard.
+
+```comment
+This table is the slide to slow down on — it's the whole week's argument
+compressed into four rows, and every later example (TPMS, check engine, the
+Alert Audit brief in week 4) is a variation on the same four stages.
+```
+
+---
+
+## Real example: the 1958–1965 US full-size sedan
+
+By the late 1950s, full-size Chevrolets and Fords were shipping with a
+telltale-only instrument panel as standard equipment — an oil-pressure
+light and a charge light where a gauge used to sit — with the full gauge
+package sold back as an extra-cost option on some trims. This is a rare
+case where the *cheaper* version and the *simplified* version were the same
+car: buyers who wanted the old continuous readout had to pay to get it back.
+That inversion — simplicity as the default, precision as the upsell — is the
+detail worth remembering when the case study returns later in the lecture.
+
+---
+
+> **Suggested image:** A 1960s American full-size sedan dashboard with a
+> factory-fitted ammeter or oil-pressure gauge, next to a same-model-year
+> dashboard from a trim level that replaced it with a warning light
+> **Notice:** the empty circular bezel or blanking plate where the gauge
+> used to sit, and how little the rest of the cluster layout had to change
+> to accommodate the swap
+> **Annotation:** an arrow from the gauge's numbered scale to the light's
+> single lens, labelled "80 psi of range → 1 bit"
+> **Caption:** "Same model, same year, two different answers to the same
+> question."
+> **Alt text:** "Side-by-side comparison of two dashboards from the same
+> car model and year: the left cluster has a round analogue gauge with a
+> numbered scale for oil pressure, and the right cluster has a small round
+> warning lamp in the same position, unlit."
+
+---
+
+## Real example: BMW Check Control
+
+BMW's Check Control system, introduced in the early 1980s, is an attempt to
+put some of the lost information back — not by returning to a gauge, but by
+adding a short text sentence alongside the light: "CHECK BRAKE LIGHT" rather
+than a single generic lamp. It's useful for this week because it shows that
+the *binary switch* (something's wrong / it isn't) and the *vocabulary*
+naming what's wrong are separable design decisions — you can keep the
+one-bit trigger and still fix the ambiguity by spending words on it. That's
+next week's topic; here it's evidence that manufacturers noticed the same
+gap you're noticing now, decades before the check-engine light existed.
+
+---
+
+## Real example: Honda's blinking check-engine light
+
+Honda's dashboards (like most OBD-II-compliant cars) use one lamp in two
+*patterns*: steady illumination for most stored fault codes, but a
+**flashing** malfunction indicator specifically for an active misfire severe
+enough to damage the catalytic converter within a short drive. This is the
+idiot light's one-bit logic smuggling in a second bit through timing rather
+than a second lamp — useful here because it's the cheapest possible fix
+(no new hardware, no new colour) and it still only distinguishes "urgent"
+from "not urgent," not which of several hundred codes triggered either
+state.
+
+---
+
+## Real example: Volvo's TPMS convention
+
+Many Volvo models (and most tyre-pressure-monitoring systems built to the
+same convention) use a **steady** low-pressure telltale to mean "a tyre is
+underinflated" and a **flashing** version of the same lamp to mean "the
+monitoring system itself has a fault and can't tell you." It's useful here
+as a direct contrast with Honda's blink convention: same technique (steady
+vs flashing), applied to distinguish a *measured problem* from an *unmeasured
+unknown* rather than to rank urgency. Two manufacturers, the same one extra
+bit, spent on two different distinctions.
+
+---
+
+## Comparing two interface approaches directly
+
+**Full gauge package (optional, late-1950s trim)** vs **standard telltale
+package (same car, base trim):** the gauge lets an attentive owner catch a
+slow oil-pressure decline over weeks, at the cost of a component owners
+statistically weren't reading correctly. The telltale guarantees every owner
+notices *a* problem, at the cost of guaranteeing none of them see it coming.
+Neither approach is a strict improvement on the other — they're optimising
+for different failure modes: the rare owner who reads gauges well, versus
+the common owner who doesn't.
+
+---
+
+> **Suggested image:** A modern production car's driver display with the
+> check-engine (MIL) icon illuminated, driver's-eye view, dashboard otherwise
+> unremarkable
+> **Notice:** how little else on the cluster changes when this light comes
+> on — no accompanying text, no severity indicator, no colour distinct from
+> other amber telltales nearby
+> **Annotation:** a circle around the MIL icon with a callout reading
+> "1 of 400+ possible stored codes"
+> **Caption:** "The dashboard's entire message is: something is wrong.
+> Somewhere."
+> **Alt text:** "A driver's-eye photograph of a car dashboard at night,
+> showing an illuminated amber engine-shaped warning icon among several
+> other unlit telltales, with no accompanying text or numeric readout."
+
+---
+
+## Case study: the check-engine light's ambiguity
+
+The check-engine light (the malfunction indicator lamp, standardised under
+OBD-II in US vehicles from 1996) inherits the idiot light's exact shape —
+sensor, threshold, binary decision, one lamp — but the mapping from "on" to
+"cause" exploded. Where an oil-pressure light has one plausible cause behind
+it, a modern MIL can be triggered by any of several hundred distinct
+diagnostic trouble codes stored in the engine control unit, covering
+everything from a loose fuel cap to a failing catalytic converter. The
+lamp's design intent — guarantee every driver notices *something* — succeeds
+completely. Its cost is that the driver learns nothing about *what*, and the
+dashboard has no vocabulary for telling them apart.
+
+---
+
+## Case study: consequences for the driver
+
+Because the light can't distinguish severity, drivers rationally learn to
+distrust it in exactly the way alarm designers dread: some check-engine
+triggers really are a loose fuel cap that clears itself in a day or two, and
+some are a misfire actively damaging a catalytic converter with every
+kilometre driven. A driver who has been safely ignored the light twice
+before has no dashboard-level reason to treat the third instance
+differently — the interface gives identical signals to a $40 problem and a
+$2,000 one. This is an early, mild version of the alarm-fatigue problem week
+10 covers in full: ambiguity, sustained long enough, teaches drivers to
+downweight the alarm itself.
+
+---
+
+## Case study: a synthesis worth wanting
+
+The fix doesn't require abandoning the one-bit lamp — it requires spending a
+*second* signal alongside it, the way BMW's Check Control and Honda's blink
+convention each already do in miniature. A synthesis: keep the guaranteed,
+unmissable lamp for "attend to this," but pair it with a severity tier (a
+distinct colour or blink pattern for "drive-damaging now" versus
+"schedule a service") and route the actual diagnostic code to wherever the
+driver already looks for detail — a companion app, a multi-info display, a
+dealer scan tool. That's not a hardware problem any more. It's a vocabulary
+problem, which is where next week starts.
+
+---
+
+> **Suggested image:** An OBD-II handheld scan tool plugged into a vehicle's
+> diagnostic port, its small screen showing a specific stored code (e.g.
+> "P0455 — Evaporative Emission System Leak Detected")
+> **Notice:** how much more specific the scan tool's readout is than the
+> dashboard light that sent the driver looking for it in the first place
+> **Annotation:** a bracket connecting the dashboard's single lit icon (in
+> a small inset) to the scan tool's specific code, labelled "same event, two
+> very different amounts of information"
+> **Caption:** "Everything the dashboard didn't tell you was sitting in the
+> car the whole time."
+> **Alt text:** "A handheld OBD-II diagnostic scan tool connected by cable
+> to a car's dashboard-mounted diagnostic port, its screen displaying a
+> specific alphanumeric fault code and a short description of the fault."
+
+---
+
+## Comparison: continuous gauge vs single warning light
+
+| Dimension | Continuous gauge | Single warning light |
+| --- | --- | --- |
+| Precision | Exact value, any point in range | One bit: above or below threshold |
+| Glanceability | Requires reading a position against a learned baseline | Instant — lit or unlit, no interpretation |
+| Manufacturing cost | Sensor, mechanical or electronic gauge, wiring | Simple switch/comparator, one lamp |
+| Right before failure | Trend visible in advance, if the driver was watching | Often silent until the threshold is crossed |
+| Cost of driver inattention | High — an unread gauge gives no warning at all | Low — impossible to misread when lit |
+
+---
+
+## Exercise: build the missing middle state
+
+Take the check-engine light as it exists today. In groups, design **one**
+additional state — a colour, a blink pattern, or a short accompanying text
+string — that would let the dashboard distinguish "this can wait" from "pull
+over soon," without adding a screen or a full gauge back.
+
+Questions to work through:
+
+- What underlying signal would you need the ECU to expose to drive that
+  extra state?
+- Does your solution risk teaching drivers to ignore the *new* calm state
+  the same way they learned to distrust the old single one?
+- Would your fix have been physically buildable with 1958 pressure-switch
+  technology, or does it require something a mechanical telltale couldn't
+  do?
+
+```notes
+Sample direction: most groups land on colour-tiering (amber for
+schedule-a-service codes, red for misfire/emissions-damage codes) or a
+blink convention matching Honda's real one. Push back on any group that
+proposes moving everything to a screen — that's next-decade thinking, not
+this week's constraint. The interesting tension is the second question: any
+new "calm" state is itself a threshold, and thresholds are exactly what this
+week has been arguing lose information. There's no fully information-lossless
+answer with one lamp; the point is to make them feel that limit.
+```
+
+---
+
+## Mini knowledge check
+
+1. Why couldn't a 1960s idiot light represent "oil pressure is fine but
+   declining"? Name the specific component responsible.
+2. Name one real manufacturer convention (from today's lecture) that adds a
+   second bit of information to a single warning lamp, and say what
+   distinction it's used for.
+3. A check-engine light is triggered by both a loose fuel cap and a
+   misfiring cylinder. What, specifically, does the light fail to tell the
+   driver that would let them tell these apart?
+4. Is the 1950s–60s switch to idiot lights better described as a cost-saving
+   measure or a response to a measured design failure? Defend your answer.
+
+```notes
+1. The pressure switch is a simple open/closed comparator against one fixed
+threshold — it has no output for "close to the threshold" or "moving toward
+it," only above/below.
+2. BMW Check Control (text sentence naming the fault), Honda's blinking MIL
+(urgency tier via blink pattern), or Volvo's TPMS steady/flash convention
+(measured fault vs system fault) — any one, correctly explained.
+3. Severity/urgency and identity of the fault — the light gives no signal
+that would let a driver rank these two faults against each other.
+4. Accept either answer if argued from evidence: the lecture's framing is
+that it's both, and manufacturers' own research into misread gauges is what
+makes "cost-saving" and "design correction" not mutually exclusive here.
+```
+
+---
+
+## Summary
+
+- A gauge and a light are not the same information at different sizes — a
+  light throws away magnitude, rate of change, and trend, keeping only one
+  bit
+- The idiot-light shift wasn't just cost-cutting: manufacturers had
+  evidence that many drivers weren't reading gauges correctly, making the
+  "lost" precision partly illusory in practice
+- The check-engine light is the idiot light's exact logic, with the mapping
+  from "on" to "cause" exploded from one plausible fault to hundreds
+- Real manufacturers (BMW, Honda, Volvo) have each, independently, tried to
+  smuggle a second bit of information into a single lamp — proof the gap is
+  real and known, not a flaw only visible in hindsight
+- Recovering lost information doesn't require a gauge back — it requires
+  spending a second signal (colour, pattern, or text) alongside the one bit
+
+---
+
+## Bridge to week 4
+
+Every fix this week gestured at — a text sentence, a blink pattern, a colour
+tier — depends on the driver being able to tell *which* light they're
+looking at in the first place. A single red lamp is unambiguous in isolation;
+a dashboard with a dozen amber lamps in a row is not, unless each one carries
+a symbol specific enough to name its own fault at a glance, in any language,
+without reading a word. That's the vocabulary problem next week studies
+directly: ISO 2575 and the slow, real convergence on a shared set of
+dashboard icons — starting with the tyre-pressure pictogram, which took the
+industry years to agree on.
+
+---
+
+{/* _class: impact */}
+
+## Next: icons and symbols
+
+A light needs a symbol before it can say more than "attend to this."
+
+Week 4 — building a shared vocabulary. Assessment 1, the Alert Audit, is due
+at the end of that week.

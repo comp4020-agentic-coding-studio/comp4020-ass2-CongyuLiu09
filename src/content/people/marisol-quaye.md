@@ -11,11 +11,15 @@ photo: ./marisol-quaye.avif
 photoAlt: A stylised portrait of a person in three-quarter view, flat gold and black shapes on warm cream, in a two-ink risograph print
 ---
 
-<!-- STARTER_CONTENT: replace this person entry, then remove this comment. -->
+Marisol spent eleven years in automotive human factors before moving to
+teaching, most of it on instrument-cluster and telltale design for two
+mass-market manufacturers — the unglamorous end of the industry that decides
+what a driver sees in the half-second before they decide whether to pull
+over. She designed this course after one too many arguments about whether a
+warning light needed to also chime, and got tired of losing the argument to
+"that's what we shipped last year."
 
-Replace this entry. A people page carries a short bio and whatever a student
-needs in order to contact the right person for the right thing --- and nothing
-that will be stale by week 3.
-
-Consultation hours, contact preferences and the escalation path (who to ask
-first, who to ask when that does not work) are the parts students actually read.
+Office hours are Tuesdays 2–4pm, by drop-in or booked slot. Use email for
+anything that needs a considered answer or touches your mark; use the weekly
+studio for feedback on work in progress — it's faster for both of us and
+other students often have the same question.
