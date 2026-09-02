@@ -27,3 +27,151 @@
   font-size: 0.75em;
   color: var(--at-text-secondary);
 }
+
+/* Dash-language on a dark surface — the same `.dash-badge` / `.dash-panel` /
+ * `.dash-flow` classes the web pages use (src/styles/dashboard.css), so a
+ * slide showing a severity chip or a process panel reads as the same visual
+ * language as the site, not a second one invented for slides. Deck pages
+ * load only deck.css and the brand CSS (see the file banner above), so the
+ * tokens those two don't define get a deck-scoped copy here rather than an
+ * import of dashboard.css itself, which assumes light-dark() surface tokens
+ * a dark reveal.js slide doesn't have.
+ *
+ * The four status colours are the literal dark-arm values tokens.css uses
+ * for --at-info/-success/-warning/-error (see the comment there) rather
+ * than derived from --at-primary: severity is a fixed vocabulary that must
+ * stay legible regardless of which brand hue a course runs, exactly like
+ * on the web side. */
+.reveal .slides section {
+  --at-spacing-xs: 0.25rem;
+  --at-spacing-md: 1rem;
+  --at-spacing-lg: 1.5rem;
+  --at-font-size-xs: 0.6em;
+  --at-bg-elevated: oklch(from var(--at-primary) 19% 0.012 h);
+  --at-text-muted: oklch(from var(--at-primary) 95% 0.005 h / 56%);
+  --at-info: #38bdf8;
+  --at-info-soft: rgb(56 189 248 / 14%);
+  --at-success: #4ade80;
+  --at-success-soft: rgb(74 222 128 / 14%);
+  --at-warning: #fbbf24;
+  --at-warning-soft: rgb(251 191 36 / 14%);
+  --at-error: #f87171;
+  --at-error-soft: rgb(248 113 113 / 14%);
+}
+
+.reveal .slides section .dash-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.15em 0.65em;
+  border: 1px solid currentColor;
+  border-radius: var(--at-border-radius);
+  font-size: var(--at-font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.reveal .slides section .dash-badge--advisory {
+  color: var(--at-info);
+  background: var(--at-info-soft);
+}
+
+.reveal .slides section .dash-badge--normal {
+  color: var(--at-success);
+  background: var(--at-success-soft);
+}
+
+.reveal .slides section .dash-badge--caution {
+  color: var(--at-warning);
+  background: var(--at-warning-soft);
+}
+
+.reveal .slides section .dash-badge--critical {
+  color: var(--at-error);
+  background: var(--at-error-soft);
+}
+
+.reveal .slides section .dash-panel {
+  position: relative;
+  border: 1px solid var(--at-divider);
+  border-radius: var(--at-border-radius);
+  background: var(--at-bg-elevated);
+  padding: var(--at-spacing-md);
+  padding-block-start: calc(var(--at-spacing-md) + 3px);
+  text-align: start;
+}
+
+.reveal .slides section .dash-panel::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 3px;
+  border-radius: var(--at-border-radius) var(--at-border-radius) 0 0;
+  background: var(--at-accent);
+}
+
+.reveal .slides section .dash-panel > :last-child {
+  margin-block-end: 0;
+}
+
+.reveal .slides section .dash-panel__label {
+  display: block;
+  margin-block-end: var(--at-spacing-xs);
+  color: var(--at-text-muted);
+  font-size: var(--at-font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.reveal .slides section .dash-panel--caution {
+  --at-accent: var(--at-warning);
+}
+
+.reveal .slides section .dash-panel--critical {
+  --at-accent: var(--at-error);
+}
+
+.reveal .slides section .dash-flow {
+  display: flex;
+  align-items: stretch;
+  gap: var(--at-spacing-md);
+  margin-block: var(--at-spacing-md);
+}
+
+.reveal .slides section .dash-flow__step {
+  flex: 1 1 0;
+  position: relative;
+  border: 1px solid var(--at-divider);
+  border-radius: var(--at-border-radius);
+  background: var(--at-bg-elevated);
+  padding: var(--at-spacing-md);
+  text-align: start;
+  font-size: 0.68em;
+}
+
+.reveal .slides section .dash-flow__step-label {
+  display: block;
+  margin-block-end: var(--at-spacing-xs);
+  color: var(--at-text-muted);
+  font-size: var(--at-font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.reveal .slides section .dash-flow__step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  inset-inline-end: calc(-1 * var(--at-spacing-md) - 1px);
+  width: calc(var(--at-spacing-md) + 2px);
+  height: 2px;
+  background: var(--at-divider);
+  transform: translateY(-50%);
+}
