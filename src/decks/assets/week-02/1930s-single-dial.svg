@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" width="760" height="460">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e6e6e6"/>
+    </marker>
+  </defs>
+
+  <!-- plain metal panel -->
+  <rect x="60" y="90" width="640" height="240" rx="8" fill="#1a1a1a" stroke="#e6e6e6" stroke-opacity="0.35" stroke-width="2"/>
+
+  <!-- one large speedometer dial -->
+  <circle cx="380" cy="210" r="115" fill="none" stroke="#e6e6e6" stroke-width="5"/>
+  <g stroke="#e6e6e6" stroke-width="2" stroke-opacity="0.6">
+    <line x1="380" y1="97" x2="380" y2="112"/>
+    <line x1="470" y1="140" x2="459" y2="151"/>
+    <line x1="470" y1="280" x2="459" y2="269"/>
+    <line x1="290" y1="140" x2="301" y2="151"/>
+    <line x1="290" y1="280" x2="301" y2="269"/>
+    <line x1="380" y1="323" x2="380" y2="308"/>
+  </g>
+  <line x1="380" y1="210" x2="380" y2="120" stroke="#e6e6e6" stroke-width="5" stroke-linecap="round" transform="rotate(-25 380 210)"/>
+  <circle cx="380" cy="210" r="9" fill="#e6e6e6"/>
+
+  <!-- two small unlabelled flanking gauges -->
+  <circle cx="150" cy="210" r="42" fill="none" stroke="#e6e6e6" stroke-opacity="0.55" stroke-width="2.5"/>
+  <line x1="150" y1="210" x2="150" y2="180" stroke="#e6e6e6" stroke-opacity="0.55" stroke-width="2.5" transform="rotate(15 150 210)"/>
+  <circle cx="610" cy="210" r="42" fill="none" stroke="#e6e6e6" stroke-opacity="0.55" stroke-width="2.5"/>
+  <line x1="610" y1="210" x2="610" y2="180" stroke="#e6e6e6" stroke-opacity="0.55" stroke-width="2.5" transform="rotate(-40 610 210)"/>
+
+  <!-- annotation -->
+  <path d="M 380 340 L 380 380" fill="none" stroke="#e6e6e6" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="380" y="410" text-anchor="middle" fill="#e6e6e6" font-family="sans-serif" font-size="19" font-style="italic">the only continuous number this driver gets</text>
+</svg>

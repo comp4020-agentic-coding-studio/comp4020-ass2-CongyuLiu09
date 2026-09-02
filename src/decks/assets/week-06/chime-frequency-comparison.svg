@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" width="760" height="460">
+  <!-- shared frequency axis, vertical, for both spectrograms -->
+  <!-- sensitive-hearing band -->
+  <rect x="60" y="150" width="640" height="80" fill="#4f46e5" fill-opacity="0.15"/>
+  <text x="710" y="195" text-anchor="end" fill="#4f46e5" font-family="sans-serif" font-size="13">2–4 kHz "sensitive hearing"</text>
+
+  <!-- top spectrogram: mid-register chime -->
+  <text x="60" y="70" fill="#e6e6e6" font-family="sans-serif" font-size="15" font-weight="600">mid-register chime (2–3 kHz)</text>
+  <g fill="#0f766e" fill-opacity="0.8">
+    <rect x="80" y="170" width="30" height="40"/>
+    <rect x="130" y="165" width="30" height="50"/>
+    <rect x="180" y="172" width="30" height="36"/>
+    <rect x="230" y="168" width="30" height="44"/>
+    <rect x="280" y="175" width="30" height="30"/>
+  </g>
+
+  <!-- bottom spectrogram: high-register alert -->
+  <text x="400" y="70" fill="#e6e6e6" font-family="sans-serif" font-size="15" font-weight="600">high-register alert (4–5+ kHz)</text>
+  <g fill="#c2410c" fill-opacity="0.8">
+    <rect x="420" y="80" width="30" height="70"/>
+    <rect x="470" y="75" width="30" height="75"/>
+    <rect x="520" y="82" width="30" height="68"/>
+    <rect x="570" y="78" width="30" height="72"/>
+    <rect x="620" y="85" width="30" height="65"/>
+  </g>
+
+  <!-- frequency axis labels -->
+  <line x1="60" y1="60" x2="60" y2="350" stroke="#e6e6e6" stroke-opacity="0.4" stroke-width="2"/>
+  <text x="45" y="300" text-anchor="end" fill="#e6e6e6" fill-opacity="0.6" font-family="sans-serif" font-size="13">low Hz</text>
+  <text x="45" y="90" text-anchor="end" fill="#e6e6e6" fill-opacity="0.6" font-family="sans-serif" font-size="13">high Hz</text>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" width="760" height="460">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e6e6e6"/>
+    </marker>
+  </defs>
+
+  <!-- left cluster: gauge trim -->
+  <rect x="30" y="60" width="320" height="300" rx="10" fill="#171717" stroke="#e6e6e6" stroke-opacity="0.35" stroke-width="2"/>
+  <circle cx="190" cy="210" r="95" fill="none" stroke="#e6e6e6" stroke-width="4"/>
+  <g font-family="sans-serif" font-size="14" fill="#e6e6e6" text-anchor="middle">
+    <text x="115" y="255">0</text>
+    <text x="130" y="150">40</text>
+    <text x="250" y="150">80</text>
+    <text x="265" y="255">psi</text>
+  </g>
+  <line x1="190" y1="210" x2="190" y2="135" stroke="#e6e6e6" stroke-width="4" stroke-linecap="round" transform="rotate(-15 190 210)"/>
+  <circle cx="190" cy="210" r="7" fill="#e6e6e6"/>
+  <text x="190" y="340" text-anchor="middle" fill="#e6e6e6" font-family="sans-serif" font-size="16">gauge trim</text>
+
+  <!-- right cluster: light trim, blanking plate -->
+  <rect x="410" y="60" width="320" height="300" rx="10" fill="#171717" stroke="#e6e6e6" stroke-opacity="0.35" stroke-width="2"/>
+  <circle cx="570" cy="210" r="26" fill="#1a1a1a" stroke="#dc2626" stroke-width="3"/>
+  <text x="570" y="217" text-anchor="middle" fill="#dc2626" font-family="sans-serif" font-size="22" font-weight="700">!</text>
+  <circle cx="570" cy="210" r="55" fill="none" stroke="#e6e6e6" stroke-opacity="0.25" stroke-width="2" stroke-dasharray="4 6"/>
+  <text x="570" y="340" text-anchor="middle" fill="#e6e6e6" font-family="sans-serif" font-size="16">light trim — same bezel, no gauge</text>
+
+  <!-- annotation arrow between the two -->
+  <path d="M 300 210 L 505 210" fill="none" stroke="#e6e6e6" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="380" y="195" text-anchor="middle" fill="#e6e6e6" font-family="sans-serif" font-size="17" font-weight="600">80 psi of range → 1 bit</text>
+</svg>

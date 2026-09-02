@@ -64,22 +64,9 @@ centimetres. Nobody has to be told what a faster beep means; the mapping
 from tempo to distance is learned in seconds, almost certainly the single
 most intuitive piece of sound design on the entire dashboard.
 
-> **Suggested image:** A spectrogram or tempo-graph of a typical
-> reversing-sensor beep sequence, showing inter-beep gaps shrinking from
-> roughly 800ms to a continuous tone as distance closes — most
-> manufacturer service/diagnostic videos of a rear parking sensor include
-> audio that could be captured for this
-> **Notice:** the gap between beeps, not the pitch or loudness, is what's
-> actually changing
-> **Annotation:** arrows marking inter-beep interval at three distances
-> (1.5m, 0.5m, 0.1m), shrinking left to right
-> **Caption:** "Distance is encoded entirely in tempo — the beep doesn't
-> get louder, it gets more frequent, until frequency itself becomes a
-> constant tone."
-> **Alt text:** "A tempo graph of a reversing-sensor beep sequence
-> showing three clusters of tick marks, spaced widely on the left and
-> merging into a solid bar on the right, illustrating beep interval
-> shrinking as parking distance decreases."
+![A tempo graph of a reversing-sensor beep sequence showing three clusters of tick marks, spaced widely on the left and merging into a solid bar on the right, illustrating beep interval shrinking as parking distance decreases.](./assets/week-06/reversing-beep-tempo.svg)
+
+*Distance is encoded entirely in tempo — the beep doesn't get louder, it gets more frequent, until frequency itself becomes a constant tone.*
 
 ```comment
 Leading with parking-sensor tempo before naming the four variables lets
@@ -133,22 +120,9 @@ stops reading as "urgent" and starts reading as "broken": a shrill,
 piercing tone gets dismissed as a fault in the speaker rather than a
 message about the car. The usable range is narrower than it looks.
 
-> **Suggested image:** A comparative spectrogram of a mid-register chime
-> (roughly 2–3 kHz, read as "urgent but composed") against a
-> high-register alert tone (above 4–5 kHz, read as "shrill" or
-> "glitchy") — recordable from any two dashboard alert demo videos with
-> visibly different tone character
-> **Notice:** where the bulk of each tone's energy sits vertically on the
-> frequency axis
-> **Annotation:** a shaded band marking the 2–4 kHz "sensitive hearing"
-> range human ears are tuned to
-> **Caption:** "Both tones sit inside the ear's most sensitive range —
-> the difference in how 'urgent' versus 'broken' they feel is pitch
-> alone, not loudness."
-> **Alt text:** "Two stacked spectrograms, the first showing concentrated
-> energy around 2 to 3 kilohertz, the second showing energy concentrated
-> above 4 to 5 kilohertz, both within a shaded band marking human
-> hearing's most sensitive range."
+![Two stacked spectrograms, the first showing concentrated energy around 2 to 3 kilohertz, the second showing energy concentrated above 4 to 5 kilohertz, both within a shaded band marking human hearing's most sensitive range.](./assets/week-06/chime-frequency-comparison.svg)
+
+*Both tones sit inside the ear's most sensitive range — the difference in how 'urgent' versus 'broken' they feel is pitch alone, not loudness.*
 
 ---
 
@@ -309,22 +283,9 @@ line of text on the central touchscreen. The chime library as a whole is
 sparse compared with a typical combustion-era competitor's, which
 usually runs to dozens of distinct alert sounds across systems.
 
-> **Suggested image:** A side-by-side waveform comparison of a full
-> ignition-to-shutdown driving session, one track from a Tesla model and
-> one from a comparable combustion-era competitor with a fuller chime
-> library — sourceable by recording both cabins through a full
-> start/drive/park cycle with a phone mic
-> **Notice:** the total number of distinct sound events and how much
-> silence separates them on each track
-> **Annotation:** count markers above each waveform tallying discrete
-> chime events across the session
-> **Caption:** "Same length of driving, a fraction of the sound events —
-> the difference isn't one missing chime, it's an entire design
-> philosophy about how often the car should speak."
-> **Alt text:** "Two stacked waveforms of equal length representing a
-> full drive cycle; the lower waveform, labelled as the competitor
-> vehicle, shows many more short sound-event spikes than the upper
-> waveform labelled Tesla, which shows only a few."
+![Two stacked waveforms of equal length representing a full drive cycle; the lower waveform, labelled as the competitor vehicle, shows many more short sound-event spikes than the upper waveform labelled Tesla, which shows only a few.](./assets/week-06/tesla-competitor-chime-count.svg)
+
+*Same length of driving, a fraction of the sound events — the difference isn't one missing chime, it's an entire design philosophy about how often the car should speak.*
 
 **Design intent:** treat the driver as someone who, once told, doesn't
 need to be told again at increasing volume. **Strength:** far less

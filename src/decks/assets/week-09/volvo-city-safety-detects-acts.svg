@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" width="760" height="460">
+  <!-- car side silhouette -->
+  <path d="M 80 300 L 120 300 L 150 240 L 550 240 L 610 300 L 680 300 L 680 340 L 80 340 Z"
+    fill="#161616" stroke="#e6e6e6" stroke-opacity="0.4" stroke-width="2"/>
+  <path d="M 200 240 L 240 180 L 440 180 L 480 240 Z" fill="#101010" stroke="#e6e6e6" stroke-opacity="0.4" stroke-width="2"/>
+  <circle cx="180" cy="340" r="28" fill="#0d0d0d" stroke="#e6e6e6" stroke-opacity="0.5" stroke-width="3"/>
+  <circle cx="580" cy="340" r="28" fill="#0d0d0d" stroke="#e6e6e6" stroke-opacity="0.5" stroke-width="3"/>
+
+  <!-- sensor housing near top of windscreen -->
+  <rect x="330" y="175" width="30" height="14" fill="#4f46e5"/>
+  <path d="M 345 175 L 345 130" stroke="#4f46e5" stroke-width="2"/>
+  <text x="345" y="115" text-anchor="middle" fill="#4f46e5" font-family="sans-serif" font-size="14" font-weight="600">detects</text>
+
+  <!-- brake pedal callout -->
+  <rect x="470" y="300" width="16" height="30" fill="#c2410c"/>
+  <path d="M 478 300 L 590 220" stroke="#c2410c" stroke-width="2"/>
+  <text x="600" y="205" text-anchor="start" fill="#c2410c" font-family="sans-serif" font-size="14" font-weight="600">acts — the warning,</text>
+  <text x="600" y="225" text-anchor="start" fill="#c2410c" font-family="sans-serif" font-size="14" font-weight="600">if any, is secondary</text>
+</svg>

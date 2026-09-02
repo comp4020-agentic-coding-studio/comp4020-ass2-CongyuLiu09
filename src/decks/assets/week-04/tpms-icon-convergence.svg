@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" width="760" height="460">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e6e6e6" fill-opacity="0.6"/>
+    </marker>
+  </defs>
+
+  <!-- six distinct pre-2000s symbols -->
+  <g stroke="#e6e6e6" stroke-opacity="0.55" stroke-width="2.5" fill="none">
+    <rect x="50" y="40" width="60" height="60" rx="8"/>
+    <circle cx="200" cy="70" r="32"/>
+    <path d="M 320,40 L 350,95 L 290,95 Z"/>
+    <path d="M 420,40 L 480,40 L 480,100 L 420,100 Z" transform="rotate(45 450 70)"/>
+    <ellipse cx="580" cy="70" rx="34" ry="24"/>
+    <path d="M 660,100 L 690,40 L 720,100 Z"/>
+  </g>
+  <g font-family="sans-serif" font-size="22" fill="#e6e6e6" fill-opacity="0.7" text-anchor="middle">
+    <text x="80" y="80">!</text>
+    <text x="200" y="80">!</text>
+    <text x="318" y="90">!</text>
+    <text x="450" y="80">!</text>
+    <text x="580" y="80">!</text>
+    <text x="690" y="90">!</text>
+  </g>
+
+  <!-- converging arrows -->
+  <g stroke="#e6e6e6" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M 90 110 L 340 260" fill="none"/>
+    <path d="M 205 115 L 360 255" fill="none"/>
+    <path d="M 320 110 L 380 245" fill="none"/>
+    <path d="M 450 115 L 400 245" fill="none"/>
+    <path d="M 580 110 L 420 255" fill="none"/>
+    <path d="M 680 110 L 440 260" fill="none"/>
+  </g>
+
+  <!-- single converged ISO 2575 pictogram -->
+  <g transform="translate(380,340)">
+    <path d="M -40,20 Q -46,-24 -12,-30 L 12,-30 Q 46,-24 40,20 L 34,20 L 34,38 L 22,38 L 22,20 L -22,20 L -22,38 L -34,38 Z"
+      fill="none" stroke="#f59e0b" stroke-width="4" stroke-linejoin="round"/>
+    <line x1="0" y1="-14" x2="0" y2="4" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="0" cy="12" r="2.5" fill="#f59e0b"/>
+  </g>
+  <text x="380" y="420" text-anchor="middle" fill="#f59e0b" font-family="sans-serif" font-size="18" font-weight="600">ISO 2575</text>
+</svg>

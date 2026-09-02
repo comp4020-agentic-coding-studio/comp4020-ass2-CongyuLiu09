@@ -11,3 +11,19 @@
  * slide class you reach for (`_class: quote`), a code-heavy layout, a
  * background. */
 @import url("astro-theme-university/styles/deck.css");
+
+/* Inline slide images (the "Suggested image" diagrams) have no natural size
+ * constraint from the base theme, so bound them to the slide's content
+ * width instead of letting an SVG's own viewBox decide. */
+.reveal .slides section img {
+  max-width: 100%;
+  height: auto;
+}
+
+.reveal .slides section figcaption,
+.reveal .slides section p em:only-child {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.75em;
+  color: var(--at-text-secondary);
+}

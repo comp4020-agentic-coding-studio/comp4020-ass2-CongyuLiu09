@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" width="760" height="460">
+  <rect x="80" y="40" width="600" height="320" rx="8" fill="#111111" stroke="#e6e6e6" stroke-opacity="0.3" stroke-width="2"/>
+
+  <!-- grid of annunciator lights -->
+  <g>
+    <!-- rows -->
+    <circle cx="150" cy="100" r="20" fill="#1a1a1a" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="230" cy="100" r="20" fill="#1a1a1a" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="310" cy="100" r="20" fill="#1a1a1a" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="390" cy="100" r="20" fill="#1a1a1a" stroke="#dc2626" stroke-width="3"/>
+    <circle cx="470" cy="100" r="20" fill="#1a1a1a" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="550" cy="100" r="20" fill="#1a1a1a" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="630" cy="100" r="20" fill="#1a1a1a" stroke="#dc2626" stroke-width="3"/>
+
+    <circle cx="150" cy="160" r="20" fill="#1a1a1a" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="230" cy="160" r="20" fill="#1a1a1a" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="310" cy="160" r="20" fill="#1a1a1a" stroke="#dc2626" stroke-width="3"/>
+    <circle cx="390" cy="160" r="20" fill="#1a1a1a" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="470" cy="160" r="20" fill="#1a1a1a" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="550" cy="160" r="20" fill="#1a1a1a" stroke="#dc2626" stroke-width="3"/>
+    <circle cx="630" cy="160" r="20" fill="#1a1a1a" stroke="#f59e0b" stroke-width="3"/>
+
+    <circle cx="150" cy="220" r="20" fill="#1a1a1a" stroke="#dc2626" stroke-width="3"/>
+    <circle cx="230" cy="220" r="20" fill="#1a1a1a" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="310" cy="220" r="20" fill="#1a1a1a" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="390" cy="220" r="20" fill="#1a1a1a" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="470" cy="220" r="20" fill="#1a1a1a" stroke="#dc2626" stroke-width="3"/>
+    <circle cx="550" cy="220" r="20" fill="#1a1a1a" stroke="#f59e0b" stroke-width="3"/>
+    <circle cx="630" cy="220" r="20" fill="#1a1a1a" stroke="#f59e0b" stroke-width="3"/>
+  </g>
+
+  <!-- master caution, larger, distinct -->
+  <rect x="330" y="280" width="100" height="50" rx="6" fill="#1a1a1a" stroke="#dc2626" stroke-width="5"/>
+  <text x="380" y="311" text-anchor="middle" fill="#dc2626" font-family="sans-serif" font-size="14" font-weight="700">MASTER CAUTION</text>
+
+  <path d="M 380 335 L 380 370" stroke="#e6e6e6" stroke-width="1.5"/>
+  <text x="380" y="395" text-anchor="middle" fill="#e6e6e6" font-family="sans-serif" font-size="14">the light every other light on this panel eventually routes through</text>
+</svg>

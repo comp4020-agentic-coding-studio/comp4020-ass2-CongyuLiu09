@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" width="760" height="460">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e6e6e6"/>
+    </marker>
+  </defs>
+
+  <circle cx="380" cy="240" r="160" fill="none" stroke="#e6e6e6" stroke-width="4"/>
+
+  <!-- numbered ticks 0-8, redline 6-8 -->
+  <g font-family="sans-serif" font-size="20" fill="#e6e6e6" text-anchor="middle">
+    <text x="240" y="335">0</text>
+    <text x="205" y="240">1</text>
+    <text x="225" y="150">2</text>
+    <text x="300" y="95">3</text>
+    <text x="380" y="80">4</text>
+    <text x="460" y="95">5</text>
+    <text x="535" y="150">6</text>
+    <text x="555" y="240">7</text>
+    <text x="520" y="335">8</text>
+  </g>
+
+  <!-- red zone 6-8 -->
+  <path d="M 505 175 A 160 160 0 0 1 505 305" fill="none" stroke="#dc2626" stroke-width="10"/>
+
+  <!-- needle resting near "2" -->
+  <line x1="380" y1="240" x2="380" y2="110" stroke="#e6e6e6" stroke-width="5" stroke-linecap="round" transform="rotate(-58 380 240)"/>
+  <circle cx="380" cy="240" r="9" fill="#e6e6e6"/>
+
+  <!-- annotation: redline arrow -->
+  <path d="M 620 200 L 520 220" fill="none" stroke="#dc2626" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="700" y="197" text-anchor="end" fill="#dc2626" font-family="sans-serif" font-size="17">printed redline</text>
+
+  <!-- annotation: "normal cruise" position, unmarked on the face -->
+  <path d="M 120 100 L 250 175" fill="none" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="115" y="80" text-anchor="start" fill="#0f766e" font-family="sans-serif" font-size="17">"normal cruise" — memorised, not printed</text>
+</svg>

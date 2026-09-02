@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" width="760" height="460">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4f46e5"/>
+    </marker>
+  </defs>
+
+  <!-- left: RHD cockpit view -->
+  <rect x="30" y="40" width="330" height="360" rx="10" fill="#101010" stroke="#e6e6e6" stroke-opacity="0.3" stroke-width="2"/>
+  <text x="195" y="65" text-anchor="middle" fill="#e6e6e6" font-family="sans-serif" font-size="14" font-weight="600">right-hand drive</text>
+  <circle cx="260" cy="230" r="50" fill="none" stroke="#e6e6e6" stroke-opacity="0.5" stroke-width="3"/>
+  <rect x="55" y="200" width="20" height="80" fill="#e6e6e6" fill-opacity="0.3"/>
+  <text x="65" y="300" text-anchor="middle" fill="#e6e6e6" fill-opacity="0.6" font-family="sans-serif" font-size="11">A-pillar</text>
+  <path d="M 195 340 L 260 260 L 90 220" fill="none" stroke="#4f46e5" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- right: LHD cockpit view (mirrored) -->
+  <rect x="400" y="40" width="330" height="360" rx="10" fill="#101010" stroke="#e6e6e6" stroke-opacity="0.3" stroke-width="2"/>
+  <text x="565" y="65" text-anchor="middle" fill="#e6e6e6" font-family="sans-serif" font-size="14" font-weight="600">left-hand drive</text>
+  <circle cx="500" cy="230" r="50" fill="none" stroke="#e6e6e6" stroke-opacity="0.5" stroke-width="3"/>
+  <rect x="685" y="200" width="20" height="80" fill="#e6e6e6" fill-opacity="0.3"/>
+  <text x="695" y="300" text-anchor="middle" fill="#e6e6e6" fill-opacity="0.6" font-family="sans-serif" font-size="11">A-pillar</text>
+  <path d="M 565 340 L 500 260 L 670 220" fill="none" stroke="#4f46e5" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <text x="380" y="420" text-anchor="middle" fill="#4f46e5" font-family="sans-serif" font-size="14" font-weight="600">mirror-image geometry, not necessarily mirror-image habit</text>
+</svg>

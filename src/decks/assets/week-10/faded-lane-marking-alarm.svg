@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" width="760" height="460">
+  <!-- road perspective -->
+  <path d="M 260 420 L 340 60 L 420 60 L 500 420 Z" fill="#161616"/>
+  <path d="M 260 420 L 340 60" stroke="#e6e6e6" stroke-opacity="0.4" stroke-width="3"/>
+  <path d="M 500 420 L 420 60" stroke="#e6e6e6" stroke-opacity="0.4" stroke-width="3"/>
+
+  <!-- faded, patchy centre line -->
+  <g stroke="#e6e6e6" stroke-width="4" stroke-linecap="round">
+    <line x1="380" y1="380" x2="380" y2="340" stroke-opacity="0.5"/>
+    <line x1="380" y1="300" x2="380" y2="285" stroke-opacity="0.15"/>
+    <line x1="380" y1="240" x2="380" y2="220" stroke-opacity="0.4"/>
+    <line x1="380" y1="180" x2="380" y2="172" stroke-opacity="0.1"/>
+    <line x1="380" y1="130" x2="380" y2="115" stroke-opacity="0.35"/>
+  </g>
+
+  <!-- warning icon -->
+  <g transform="translate(600,110)">
+    <rect x="-35" y="-30" width="70" height="46" rx="6" fill="#101010" stroke="#f59e0b" stroke-width="3"/>
+    <path d="M -12,10 L -12,-14 M 12,10 L 12,-14" stroke="#f59e0b" stroke-width="3" stroke-dasharray="6 5"/>
+  </g>
+
+  <!-- callout circling faded section -->
+  <ellipse cx="380" cy="292" rx="30" ry="16" fill="none" stroke="#c2410c" stroke-width="2.5" stroke-dasharray="4 3"/>
+  <path d="M 410 292 L 550 130" stroke="#c2410c" stroke-width="1.5"/>
+  <text x="560" y="200" text-anchor="middle" fill="#c2410c" font-family="sans-serif" font-size="13">sensor misreads this</text>
+  <text x="560" y="218" text-anchor="middle" fill="#c2410c" font-family="sans-serif" font-size="13">as a lane edge</text>
+</svg>

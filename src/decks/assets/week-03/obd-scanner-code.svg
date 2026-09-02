@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" width="760" height="460">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e6e6e6"/>
+    </marker>
+  </defs>
+
+  <!-- small inset: dashboard with one lit icon -->
+  <rect x="40" y="60" width="180" height="120" rx="8" fill="#141414" stroke="#e6e6e6" stroke-opacity="0.35" stroke-width="2"/>
+  <path d="M 115,145 Q 108,122 130,118 L 140,118 Q 162,122 155,145 L 152,145 L 152,155 L 145,155 L 145,145 L 125,145 L 125,155 L 118,155 Z"
+    fill="none" stroke="#f59e0b" stroke-width="3" stroke-linejoin="round"/>
+  <text x="130" y="200" text-anchor="middle" fill="#e6e6e6" font-family="sans-serif" font-size="14">dashboard: one lit icon</text>
+
+  <!-- handheld scan tool -->
+  <rect x="380" y="100" width="300" height="230" rx="18" fill="#181818" stroke="#e6e6e6" stroke-width="3"/>
+  <rect x="405" y="130" width="250" height="120" rx="6" fill="#0a2a1f" stroke="#0f766e" stroke-width="2"/>
+  <text x="420" y="165" fill="#22c55e" font-family="monospace" font-size="20" font-weight="700">P0455</text>
+  <text x="420" y="195" fill="#22c55e" font-family="monospace" font-size="13">EVAP SYSTEM LEAK</text>
+  <text x="420" y="213" fill="#22c55e" font-family="monospace" font-size="13">DETECTED (LARGE)</text>
+  <g fill="#e6e6e6" fill-opacity="0.6">
+    <circle cx="440" cy="285" r="10"/>
+    <circle cx="480" cy="285" r="10"/>
+    <circle cx="520" cy="285" r="10"/>
+    <circle cx="560" cy="285" r="10"/>
+    <circle cx="600" cy="285" r="10"/>
+  </g>
+  <text x="530" y="345" text-anchor="middle" fill="#e6e6e6" font-family="sans-serif" font-size="14">OBD-II scan tool</text>
+
+  <!-- connecting bracket -->
+  <path d="M 220 130 L 300 130 L 300 200 L 380 200" fill="none" stroke="#e6e6e6" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="300" y="118" text-anchor="middle" fill="#e6e6e6" font-family="sans-serif" font-size="15" font-style="italic">same event, two very different amounts of information</text>
+</svg>

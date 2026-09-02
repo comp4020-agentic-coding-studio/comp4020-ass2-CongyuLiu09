@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" width="760" height="460">
+  <!-- top waveform: Tesla, sparse -->
+  <text x="60" y="60" fill="#e6e6e6" font-family="sans-serif" font-size="15" font-weight="600">Tesla</text>
+  <line x1="60" y1="110" x2="700" y2="110" stroke="#e6e6e6" stroke-opacity="0.25" stroke-width="1.5"/>
+  <g stroke="#0f766e" stroke-width="3">
+    <line x1="180" y1="95" x2="180" y2="125"/>
+    <line x1="420" y1="90" x2="420" y2="130"/>
+    <line x1="600" y1="98" x2="600" y2="122"/>
+  </g>
+  <g fill="#0f766e" font-family="sans-serif" font-size="13">
+    <text x="180" y="150" text-anchor="middle">1</text>
+    <text x="420" y="150" text-anchor="middle">2</text>
+    <text x="600" y="150" text-anchor="middle">3</text>
+  </g>
+
+  <!-- bottom waveform: competitor, dense -->
+  <text x="60" y="230" fill="#e6e6e6" font-family="sans-serif" font-size="15" font-weight="600">competitor (combustion-era)</text>
+  <line x1="60" y1="280" x2="700" y2="280" stroke="#e6e6e6" stroke-opacity="0.25" stroke-width="1.5"/>
+  <g stroke="#c2410c" stroke-width="3">
+    <line x1="100" y1="260" x2="100" y2="300"/>
+    <line x1="140" y1="265" x2="140" y2="295"/>
+    <line x1="190" y1="255" x2="190" y2="305"/>
+    <line x1="230" y1="268" x2="230" y2="292"/>
+    <line x1="280" y1="260" x2="280" y2="300"/>
+    <line x1="330" y1="266" x2="330" y2="294"/>
+    <line x1="380" y1="258" x2="380" y2="302"/>
+    <line x1="430" y1="264" x2="430" y2="296"/>
+    <line x1="480" y1="256" x2="480" y2="304"/>
+    <line x1="530" y1="262" x2="530" y2="298"/>
+    <line x1="580" y1="259" x2="580" y2="301"/>
+    <line x1="630" y1="267" x2="630" y2="293"/>
+    <line x1="670" y1="257" x2="670" y2="303"/>
+  </g>
+  <text x="380" y="340" text-anchor="middle" fill="#c2410c" font-family="sans-serif" font-size="14" font-weight="600">13 discrete chime events</text>
+  <text x="380" y="180" text-anchor="middle" fill="#0f766e" font-family="sans-serif" font-size="14" font-weight="600">3 discrete chime events</text>
+
+  <text x="380" y="400" text-anchor="middle" fill="#e6e6e6" fill-opacity="0.6" font-family="sans-serif" font-size="14">same length of driving session</text>
+</svg>

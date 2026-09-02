@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" width="760" height="460">
+  <!-- display panel -->
+  <rect x="150" y="60" width="460" height="220" rx="14" fill="#101010" stroke="#e6e6e6" stroke-opacity="0.3" stroke-width="2"/>
+
+  <!-- FCW icon -->
+  <g transform="translate(380,160)">
+    <path d="M -50,25 L 0,-45 L 50,25 Z" fill="none" stroke="#dc2626" stroke-width="5" stroke-linejoin="round"/>
+    <line x1="0" y1="-15" x2="0" y2="8" stroke="#dc2626" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="0" cy="18" r="3" fill="#dc2626"/>
+    <path d="M -30,-55 Q -10,-70 10,-55" fill="none" stroke="#dc2626" stroke-width="3" stroke-linecap="round"/>
+    <path d="M -40,-65 Q -10,-88 20,-65" fill="none" stroke="#dc2626" stroke-width="3" stroke-linecap="round" stroke-opacity="0.6"/>
+  </g>
+
+  <!-- timestamps -->
+  <text x="240" y="240" text-anchor="middle" fill="#e6e6e6" font-family="monospace" font-size="16" font-weight="600">t = 0.00s</text>
+  <text x="240" y="260" text-anchor="middle" fill="#e6e6e6" fill-opacity="0.6" font-family="sans-serif" font-size="12">warning shown</text>
+
+  <text x="520" y="240" text-anchor="middle" fill="#e6e6e6" font-family="monospace" font-size="16" font-weight="600">t = 0.15s</text>
+  <text x="520" y="260" text-anchor="middle" fill="#e6e6e6" fill-opacity="0.6" font-family="sans-serif" font-size="12">braking begins</text>
+
+  <path d="M 300 240 L 460 240" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4 3"/>
+  <text x="380" y="330" text-anchor="middle" fill="#f59e0b" font-family="sans-serif" font-size="14" font-weight="600">gap: 0.15s — barely enough time to react</text>
+</svg>
