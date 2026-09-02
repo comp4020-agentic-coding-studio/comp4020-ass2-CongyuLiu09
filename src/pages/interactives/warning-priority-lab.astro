@@ -1,0 +1,36 @@
+---
+import ContentLayout from "../../layouts/ContentLayout.astro";
+import WarningPriorityLab from "../../components/WarningPriorityLab.astro";
+import { siteConfig } from "../../site-config";
+---
+
+<ContentLayout
+  title="Warning Priority Lab"
+  description="Allocate seven warning types across scarce visual and audio resources, across three driving scenarios."
+  {...siteConfig}
+>
+  <p>
+    A dashboard has a small number of ways to demand attention: one primary
+    visual zone large enough to dominate the driver's view, a strict cap on
+    how many sounds can play at once before they blur into noise, and one
+    slot for a full-screen interrupt that takes over the whole cluster. It
+    has seven warnings that might all want one of those at the same time.
+  </p>
+  <p>
+    Below, allocate a visual zone, colour tier, sound, persistence, and
+    (where you think it's warranted) the full-screen interrupt to each
+    warning that's active in the current scenario. The scarce resources are
+    enforced live — claiming the primary zone or the interrupt for one
+    warning takes it away from whichever warning held it before, and only
+    two warnings may sound at once. Switch scenarios to see which warnings
+    are even active, and how urgently.
+  </p>
+  <p>
+    When you're satisfied with an allocation, compare it against a reference
+    design for that scenario. The comparison isn't a score: it's a rationale
+    for a different set of choices, so you can decide where you agree and
+    where you don't.
+  </p>
+
+  <WarningPriorityLab />
+</ContentLayout>

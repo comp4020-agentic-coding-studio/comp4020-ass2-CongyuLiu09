@@ -354,6 +354,13 @@ lamp's design intent — guarantee every driver notices *something* — succeeds
 completely. Its cost is that the driver learns nothing about *what*, and the
 dashboard has no vocabulary for telling them apart.
 
+```notes
+Name the shape again explicitly: same sensor-threshold-decision-lamp
+process as the pressure switch, just with the "sensor" replaced by an ECU
+capable of detecting hundreds of distinct faults. The hardware got smarter;
+the presentation didn't.
+```
+
 ---
 
 ## Case study: consequences for the driver
@@ -369,6 +376,12 @@ $2,000 one. This is an early, mild version of the alarm-fatigue problem week
 10 covers in full: ambiguity, sustained long enough, teaches drivers to
 downweight the alarm itself.
 
+```notes
+This is the deliberate early plant for week 10 — say so explicitly, don't
+just gesture at it. Alarm fatigue is easier to teach later if students
+already have this concrete, low-stakes version of it in mind.
+```
+
 ---
 
 ## Case study: a synthesis worth wanting
@@ -383,11 +396,70 @@ driver already looks for detail — a companion app, a multi-info display, a
 dealer scan tool. That's not a hardware problem any more. It's a vocabulary
 problem, which is where next week starts.
 
+```notes
+This is the slide where the "synthesis" stops being aspirational — every
+piece of it (severity tier, routed detail) is something a real
+manufacturer has already shipped somewhere in this lecture. Say that
+explicitly: this isn't a hypothetical fix, it's an assembly of existing
+parts.
+```
+
 ---
 
 ![A handheld OBD-II diagnostic scan tool showing the fault code P0455 and a short description, bracketed to a small inset of the dashboard's single lit warning icon, labelled "same event, two very different amounts of information"](./assets/week-03/obd-scanner-code.svg)
 
 *Everything the dashboard didn't tell you was sitting in the car the whole time.*
+
+```notes
+Let the gap between the scan tool's specificity and the dashboard's single
+icon speak for itself for a second before moving on — it's the clearest
+visual argument in the whole deck for "the information exists, the
+dashboard just doesn't show it."
+```
+
+---
+
+## The full signal chain, and where it collapses
+
+<div class="dash-flow">
+  <div class="dash-flow__step">
+    <span class="dash-flow__step-label">Sensor reading</span>
+    Oil pressure, temperature, or an ECU fault code — continuous or
+    discrete, but rich <span class="dash-badge dash-badge--normal">survives</span>
+  </div>
+  <div class="dash-flow__step">
+    <span class="dash-flow__step-label">Interpretation & severity</span>
+    Software or a switch decides what the reading means and how urgent it is
+    <span class="dash-badge dash-badge--caution">thin</span>
+  </div>
+  <div class="dash-flow__step">
+    <span class="dash-flow__step-label">Presentation</span>
+    One lamp, one colour, one icon — whatever the dashboard has to show it
+    with <span class="dash-badge dash-badge--critical">collapses</span>
+  </div>
+  <div class="dash-flow__step">
+    <span class="dash-flow__step-label">Driver interpretation</span>
+    The driver reconstructs meaning from a single bit and whatever they
+    remember <span class="dash-badge dash-badge--critical">collapses</span>
+  </div>
+  <div class="dash-flow__step">
+    <span class="dash-flow__step-label">Response</span>
+    Pull over, ignore, or guess — the driver's action, built on what's left
+    <span class="dash-badge dash-badge--caution">thin</span>
+  </div>
+</div>
+
+This is the same shape as the four-stage table earlier, drawn wide enough to
+show where a fix (Check Control's text, Honda's blink) actually lands: at
+presentation, the one stage a manufacturer can improve without new sensors.
+
+```notes
+This is the master chain the whole course keeps returning to — sensor,
+interpretation, presentation, driver interpretation, response. Every fix
+proposed this lecture (Check Control, Honda's blink, Volvo's flash) is a
+patch applied at exactly one link: presentation. None of them touch
+interpretation or response, which is worth naming explicitly.
+```
 
 ---
 
@@ -400,6 +472,12 @@ problem, which is where next week starts.
 | Manufacturing cost | Sensor, mechanical or electronic gauge, wiring | Simple switch/comparator, one lamp |
 | Right before failure | Trend visible in advance, if the driver was watching | Often silent until the threshold is crossed |
 | Cost of driver inattention | High — an unread gauge gives no warning at all | Low — impossible to misread when lit |
+
+```notes
+Treat this table as a recap, not new content — every cell should already
+feel obvious from the case studies. If it doesn't, that's a sign to go back
+rather than push forward into the exercise.
+```
 
 ---
 
@@ -421,14 +499,39 @@ Questions to work through:
   do?
 
 ```notes
-Sample direction: most groups land on colour-tiering (amber for
-schedule-a-service codes, red for misfire/emissions-damage codes) or a
-blink convention matching Honda's real one. Push back on any group that
-proposes moving everything to a screen — that's next-decade thinking, not
-this week's constraint. The interesting tension is the second question: any
-new "calm" state is itself a threshold, and thresholds are exactly what this
-week has been arguing lose information. There's no fully information-lossless
-answer with one lamp; the point is to make them feel that limit.
+Give groups 4-5 minutes on the three questions before moving to the debrief
+slide — the second question is the one worth pushing on if a group finishes
+early, it's where the real tension lives.
+```
+
+---
+
+## Exercise debrief: a model answer
+
+Most groups land on one of two directions:
+
+- **Colour-tiering** — amber for "schedule a service" codes, red for
+  "misfire/emissions-damage" codes, using the ECU's own severity
+  classification to pick which colour to light
+- **A blink convention** — steady for most codes, flashing for the same
+  narrow "active misfire" case Honda already flags, reusing a distinction
+  Honda's system already computes
+
+Both are only buildable because the ECU already computes something a 1958
+pressure switch never could: a severity classification, not just a
+threshold crossing. That's the real constraint the exercise is testing —
+not creativity, but noticing what information the modern system actually
+has available to spend.
+
+The harder question survives either answer: a new "calm" state is itself a
+threshold, and thresholds are exactly what this week has argued lose
+information. There is no fully lossless fix with one lamp — only a choice
+about which distinction is worth the second bit.
+
+```notes
+If a group proposed moving everything to a screen, use this slide to name
+why that was ruled out: this week's constraint is one lamp, and the point
+is to feel that limit, not escape it via more hardware.
 ```
 
 ---
@@ -447,17 +550,80 @@ answer with one lamp; the point is to make them feel that limit.
    measure or a response to a measured design failure? Defend your answer.
 
 ```notes
+Give this a minute of individual or pair work before revealing the answers
+slide — question 4 is the one to watch, since it's a rehearsal for the
+misconception slide two slides from now.
+```
+
+---
+
+## Mini knowledge check — answers
+
 1. The pressure switch is a simple open/closed comparator against one fixed
-threshold — it has no output for "close to the threshold" or "moving toward
-it," only above/below.
-2. BMW Check Control (text sentence naming the fault), Honda's blinking MIL
-(urgency tier via blink pattern), or Volvo's TPMS steady/flash convention
-(measured fault vs system fault) — any one, correctly explained.
-3. Severity/urgency and identity of the fault — the light gives no signal
-that would let a driver rank these two faults against each other.
+   threshold — it has no output for "close to the threshold" or "moving
+   toward it," only above/below.
+2. BMW Check Control (a text sentence naming the fault), Honda's blinking
+   MIL (an urgency tier via blink pattern), or Volvo's TPMS steady/flash
+   convention (a measured fault vs a system fault) — any one, correctly
+   explained.
+3. Severity/urgency and the identity of the fault — the light gives no
+   signal that would let a driver rank these two faults against each
+   other.
 4. Accept either answer if argued from evidence: the lecture's framing is
-that it's both, and manufacturers' own research into misread gauges is what
-makes "cost-saving" and "design correction" not mutually exclusive here.
+   that it's both — manufacturers' own research into misread gauges is
+   what makes "cost-saving" and "design correction" not mutually exclusive
+   here.
+
+```notes
+Question 4's answer is deliberately unsettled here — the next slide names
+the misconception directly and argues for "both" more fully. Don't
+over-resolve it on this slide.
+```
+
+---
+
+## Common misconception: "it was just cheapness"
+
+The idiot light is easy to read as a manufacturer cutting a corner — remove
+a gauge, save a sensor, sell the same car for less to build. That story is
+half true, and it's the half that misses the point.
+
+Manufacturers had internal research showing gauges were being misread or
+ignored outright. Removing a component most drivers weren't using correctly
+isn't purely a cost decision — it's a response to a measured usability
+failure, the kind a modern designer would recognise as evidence-driven, not
+corner-cutting. The 1958–1965 case study earlier this lecture makes the same
+point from the other direction: some trims sold the *gauge* as the paid
+upgrade, which only makes sense if the telltale was the intended default,
+not a downgrade forced by economy.
+
+The two explanations aren't in competition. Cost savings and a genuine
+usability correction pointed the same direction at the same time, which is
+exactly why the light won so completely and so fast.
+
+```notes
+This is the slide the "why manufacturers made the swap" slide and the
+1958-sedan case study were both planted for — call back to both explicitly.
+Watch for students who want a single cause; the point of this slide is that
+two true explanations can coexist without either one being "the real one."
+```
+
+---
+
+## Reflection
+
+Before this lecture, would you have described a single warning light as a
+*simpler* version of a gauge, or a *different kind* of instrument?
+
+Write two or three sentences on what changed your answer — or on why it
+didn't. If it didn't change, say what would have needed to be true for you
+to see the light as something other than a shrunk-down gauge.
+
+```notes
+Give this thirty seconds of actual silence before moving on — it's a
+metacognitive check, not a discussion prompt, and it works better written
+than spoken. Don't let it collapse into a verbal recap of the summary
+slide; that's what the next slide is for.
 ```
 
 ---
@@ -478,6 +644,32 @@ makes "cost-saving" and "design correction" not mutually exclusive here.
 - Recovering lost information doesn't require a gauge back — it requires
   spending a second signal (colour, pattern, or text) alongside the one bit
 
+```notes
+Read these against the learning objectives slide from the start — they
+should map one-to-one. If a student can't connect a bullet here back to an
+objective, that's the one to spend the last two minutes reinforcing.
+```
+
+---
+
+## References and further reading
+
+- SAE J1979 and J2012 — On-Board Diagnostics standards defining diagnostic
+  trouble codes and the malfunction indicator lamp
+- U.S. Environmental Protection Agency OBD-II regulations, mandating
+  standardised on-board diagnostics on US light vehicles from 1996
+- BMW Check Control owner and service documentation
+- Honda malfunction-indicator-lamp blink-code service literature
+- SAE and ISO tyre-pressure-monitoring-system documentation covering the
+  Volvo-style steady/flash convention
+
+```notes
+If a student asks for a specific document, the service-literature citations
+are manufacturer-internal and vary by model year — point them at SAE J1979
+first, it's the one stable public reference underlying all three case
+studies.
+```
+
 ---
 
 ## Bridge to week 4
@@ -492,6 +684,13 @@ directly: ISO 2575 and the slow, real convergence on a shared set of
 dashboard icons — starting with the tyre-pressure pictogram, which took the
 industry years to agree on.
 
+```notes
+Don't just read the bridge paragraph — physically point back at the
+mil-icon-cluster slide's amber icon as the concrete thing that has no
+vocabulary yet. It's the same icon this whole lecture used as its running
+example, which is why it works as a bridge rather than a new topic.
+```
+
 ---
 
 {/* _class: impact */}
@@ -502,3 +701,9 @@ A light needs a symbol before it can say more than "attend to this."
 
 Week 4 — building a shared vocabulary. Assessment 1, the Alert Audit, is due
 at the end of that week.
+
+```notes
+Close on the same question the lecture opened with — nobody could read
+their own check-engine light from the icon alone. Week 4 is where that gets
+fixed.
+```

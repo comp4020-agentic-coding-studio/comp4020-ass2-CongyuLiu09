@@ -1,0 +1,851 @@
+---
+// The Warning Priority Lab.
+//
+// Design decision (see PROCESS.md): rejected two simpler shapes before this
+// one. (A) an independent per-warning rubric graded in isolation never
+// forces a trade-off between warnings — it's seven small quizzes wearing one
+// UI. (C) a timed ranking game with animated consequences added drama at the
+// cost of build risk and a real chance of reading as a gimmick rather than a
+// design exercise. This is (B): a scarcity-constrained allocation across a
+// scenario-dependent active set, so the "correct" treatment of the same
+// warning changes with what the car is doing, and over-allocating loudness
+// and space to everything is visibly punished by the live preview rather
+// than by a rule the student has to take on faith.
+//
+// No JS framework is installed in this project, so this is a plain Astro
+// island: static markup below, plain client-side script for the
+// interaction. The data model (WARNINGS, SCENARIOS) is defined once, inline
+// in the script, so the markup generation and the interaction logic can't
+// drift apart.
+---
+
+<div class="wpl" id="wpl-root">
+  <div class="wpl-scenario-bar" role="radiogroup" aria-label="Driving scenario">
+    <button type="button" class="at-button at-button--outline wpl-scenario-btn" data-scenario="highway-cruising" aria-pressed="true">
+      Highway cruising
+    </button>
+    <button type="button" class="at-button at-button--outline wpl-scenario-btn" data-scenario="reversing" aria-pressed="false">
+      Reversing into a space
+    </button>
+    <button type="button" class="at-button at-button--outline wpl-scenario-btn" data-scenario="changing-lanes" aria-pressed="false">
+      Changing lanes
+    </button>
+  </div>
+
+  <p class="wpl-scenario-description" id="wpl-scenario-description" aria-live="polite"></p>
+
+  <div class="wpl-layout">
+    <div class="wpl-controls">
+      <div class="wpl-caps dash-panel" aria-live="polite">
+        <span class="dash-panel__label">Scarce resources</span>
+        <ul class="wpl-caps-list">
+          <li>
+            Primary visual zone: <strong id="wpl-cap-primary">0 / 1</strong> in use
+          </li>
+          <li>
+            Concurrent sounds: <strong id="wpl-cap-sound">0 / 2</strong> in use
+          </li>
+          <li>
+            Full-screen interrupt: <strong id="wpl-cap-blocking">0 / 1</strong> in use
+          </li>
+        </ul>
+      </div>
+
+      <div class="wpl-warnings" id="wpl-warnings"></div>
+    </div>
+
+    <div class="wpl-preview-col">
+      <div class="wpl-cluster dash-panel" id="wpl-cluster" aria-label="Live instrument cluster preview">
+        <span class="dash-panel__label">Instrument cluster preview</span>
+        <div class="wpl-cluster-interrupt" id="wpl-cluster-interrupt" hidden></div>
+        <div class="wpl-cluster-primary" id="wpl-cluster-primary"></div>
+        <div class="wpl-cluster-secondary" id="wpl-cluster-secondary"></div>
+        <p class="wpl-cluster-empty" id="wpl-cluster-empty">
+          No active warning has been given the primary zone yet.
+        </p>
+      </div>
+
+      <button type="button" class="at-button wpl-compare-btn" id="wpl-compare-btn">
+        Compare to reference design
+      </button>
+
+      <div class="wpl-comparison" id="wpl-comparison" hidden></div>
+    </div>
+  </div>
+
+  <div class="wpl-reflection dash-panel dash-panel--caution">
+    <span class="dash-panel__label">Closing reflection</span>
+    <p>
+      Pick one warning where your allocation still disagrees with the
+      reference design after reading its rationale, in any scenario. Write
+      two or three sentences defending <em>your</em> choice — not
+      restating the reference's reasoning, but arguing against it.
+    </p>
+    <textarea
+      id="wpl-reflection-text"
+      rows="4"
+      aria-label="Reflection: defend one disagreement with the reference design"
+      placeholder="I disagree with the reference on…"></textarea>
+  </div>
+</div>
+
+<script>
+  type Zone = "secondary" | "primary";
+  type Sound = "none" | "chime" | "alarm";
+  type Persistence = "transient" | "acknowledged" | "resolved";
+  type Color = "advisory" | "caution" | "critical";
+
+  interface Allocation {
+    zone: Zone;
+    color: Color;
+    sound: Sound;
+    persistence: Persistence;
+    blocking: boolean;
+  }
+
+  interface WarningDef {
+    id: string;
+    label: string;
+    stakes: string;
+  }
+
+  interface ReferenceEntry extends Allocation {
+    rationale: string;
+  }
+
+  interface Scenario {
+    id: string;
+    label: string;
+    description: string;
+    active: string[];
+    suppressed?: Record<string, string>;
+    reference: Record<string, ReferenceEntry>;
+  }
+
+  const WARNINGS: WarningDef[] = [
+    { id: "low-fuel", label: "Low fuel", stakes: "Hours before it matters" },
+    { id: "tyre-pressure", label: "Tyre pressure", stakes: "Hours, unless it worsens fast" },
+    { id: "blind-spot", label: "Blind spot / rear proximity", stakes: "Seconds, only during a maneuver" },
+    { id: "lane-departure", label: "Lane departure", stakes: "Seconds, self-correcting" },
+    { id: "overheating", label: "Overheating", stakes: "Minutes to engine damage" },
+    { id: "oil-pressure", label: "Oil pressure", stakes: "Seconds to minutes to engine damage" },
+    { id: "forward-collision", label: "Forward collision", stakes: "1–2 seconds to impact" },
+  ];
+
+  const SCENARIOS: Scenario[] = [
+    {
+      id: "highway-cruising",
+      label: "Highway cruising",
+      description:
+        "Steady speed on the open road. No lane change or reversing maneuver in progress — blind-spot monitoring has nothing to report.",
+      active: [
+        "forward-collision",
+        "oil-pressure",
+        "lane-departure",
+        "overheating",
+        "tyre-pressure",
+        "low-fuel",
+      ],
+      reference: {
+        "forward-collision": {
+          zone: "primary",
+          color: "critical",
+          sound: "alarm",
+          persistence: "acknowledged",
+          blocking: true,
+          rationale:
+            "The only warning here with a sub-2-second response window — the one case in this scenario that justifies taking over the driver's full attention.",
+        },
+        "oil-pressure": {
+          zone: "secondary",
+          color: "critical",
+          sound: "alarm",
+          persistence: "acknowledged",
+          blocking: false,
+          rationale:
+            "Engine damage can begin within minutes at speed, so it earns one of the two sound slots — but a full-screen interrupt here would compete with forward-collision for the driver's eyes at the worst possible moment.",
+        },
+        "lane-departure": {
+          zone: "secondary",
+          color: "caution",
+          sound: "chime",
+          persistence: "transient",
+          blocking: false,
+          rationale:
+            "Seconds-scale, but self-correcting the instant the driver steers back. A chime, not an alarm — and it clears itself, so it shouldn't need acknowledging.",
+        },
+        overheating: {
+          zone: "secondary",
+          color: "caution",
+          sound: "none",
+          persistence: "resolved",
+          blocking: false,
+          rationale:
+            "Minutes-scale. A steady visual is enough, but it should stay lit until the temperature actually drops, not just until someone glances at it.",
+        },
+        "tyre-pressure": {
+          zone: "secondary",
+          color: "advisory",
+          sound: "none",
+          persistence: "resolved",
+          blocking: false,
+          rationale:
+            "Hours-scale. Sound would be alarm fatigue for a warning this unhurried.",
+        },
+        "low-fuel": {
+          zone: "secondary",
+          color: "advisory",
+          sound: "none",
+          persistence: "resolved",
+          blocking: false,
+          rationale: "The least urgent active warning in this scenario — no sound, no primary zone, ever.",
+        },
+      },
+    },
+    {
+      id: "reversing",
+      label: "Reversing into a space",
+      description:
+        "Low speed, in a car park. Forward-collision and lane-departure sensors have nothing ahead of the car to report. Blind-spot monitoring is repurposed here as rear proximity — most systems share the same radar hardware front and back.",
+      active: ["blind-spot", "oil-pressure", "tyre-pressure", "low-fuel"],
+      reference: {
+        "blind-spot": {
+          zone: "primary",
+          color: "critical",
+          sound: "alarm",
+          persistence: "resolved",
+          blocking: true,
+          rationale:
+            "An object closing from behind at parking speed is the only real emergency in this scenario. Low speed is exactly what makes a brief full-screen interrupt safe here, unlike at highway speed.",
+        },
+        "oil-pressure": {
+          zone: "secondary",
+          color: "caution",
+          sound: "none",
+          persistence: "acknowledged",
+          blocking: false,
+          rationale:
+            "Still worth surfacing, but at parking speed there is time to glance rather than react instantly — it doesn't need a sound slot here.",
+        },
+        "tyre-pressure": {
+          zone: "secondary",
+          color: "advisory",
+          sound: "none",
+          persistence: "resolved",
+          blocking: false,
+          rationale: "Nothing about reversing changes its urgency — still hours-scale.",
+        },
+        "low-fuel": {
+          zone: "secondary",
+          color: "advisory",
+          sound: "none",
+          persistence: "resolved",
+          blocking: false,
+          rationale: "Nothing about reversing changes its urgency — still hours-scale.",
+        },
+      },
+    },
+    {
+      id: "changing-lanes",
+      label: "Changing lanes",
+      description:
+        "Indicator on, actively moving into an adjacent lane. Lane-departure is deliberately suppressed this scenario — the system knows this is an intentional lane change, not a drift.",
+      active: [
+        "blind-spot",
+        "forward-collision",
+        "oil-pressure",
+        "overheating",
+        "tyre-pressure",
+        "low-fuel",
+      ],
+      suppressed: {
+        "lane-departure":
+          "Suppressed — the indicator is on, so this is an intentional lane change, not a drift.",
+      },
+      reference: {
+        "blind-spot": {
+          zone: "primary",
+          color: "critical",
+          sound: "alarm",
+          persistence: "transient",
+          blocking: false,
+          rationale:
+            "Loud and prominent, but never blocking: a full-screen interrupt would cover the exact mirror or camera view the driver needs to finish the lane change safely. The scarce resource that matters most here isn't the primary zone, it's visibility.",
+        },
+        "forward-collision": {
+          zone: "secondary",
+          color: "caution",
+          sound: "chime",
+          persistence: "transient",
+          blocking: false,
+          rationale:
+            "Still relevant, but the driver's attention is correctly on the lane-change hazard right now, not ahead.",
+        },
+        "oil-pressure": {
+          zone: "secondary",
+          color: "critical",
+          sound: "none",
+          persistence: "acknowledged",
+          blocking: false,
+          rationale:
+            "Genuinely urgent on its own terms, but this scenario has already spent its sound budget on the one warning the maneuver actually depends on.",
+        },
+        overheating: {
+          zone: "secondary",
+          color: "caution",
+          sound: "none",
+          persistence: "resolved",
+          blocking: false,
+          rationale: "Unrelated to the maneuver in progress — stays in the background.",
+        },
+        "tyre-pressure": {
+          zone: "secondary",
+          color: "advisory",
+          sound: "none",
+          persistence: "resolved",
+          blocking: false,
+          rationale: "Unrelated to the maneuver in progress — stays in the background.",
+        },
+        "low-fuel": {
+          zone: "secondary",
+          color: "advisory",
+          sound: "none",
+          persistence: "resolved",
+          blocking: false,
+          rationale: "Unrelated to the maneuver in progress — stays in the background.",
+        },
+      },
+    },
+  ];
+
+  const SOUND_LABEL: Record<Sound, string> = { none: "None", chime: "Chime", alarm: "Alarm" };
+  const PERSISTENCE_LABEL: Record<Persistence, string> = {
+    transient: "Transient",
+    acknowledged: "Until acknowledged",
+    resolved: "Until resolved",
+  };
+  const COLOR_LABEL: Record<Color, string> = {
+    advisory: "Advisory",
+    caution: "Caution",
+    critical: "Critical",
+  };
+  const COLOR_BADGE_CLASS: Record<Color, string> = {
+    advisory: "dash-badge--advisory",
+    caution: "dash-badge--caution",
+    critical: "dash-badge--critical",
+  };
+
+  function defaultAllocation(): Allocation {
+    return { zone: "secondary", color: "advisory", sound: "none", persistence: "transient", blocking: false };
+  }
+
+  // Student's allocation, kept per-warning across scenario switches on
+  // purpose — re-visiting a scenario should show what was left there, not a
+  // clean slate, since the point is comparing scenarios against each other.
+  const state: Record<string, Allocation> = {};
+  for (const w of WARNINGS) state[w.id] = defaultAllocation();
+
+  // Order sounds were most recently turned on, oldest first — used to decide
+  // which one gets bumped when a third is requested.
+  let soundOrder: string[] = [];
+
+  let currentScenarioId = SCENARIOS[0].id;
+
+  const root = document.getElementById("wpl-root");
+  if (!root) throw new Error("WarningPriorityLab: root not found");
+
+  const warningsEl = document.getElementById("wpl-warnings")!;
+  const descriptionEl = document.getElementById("wpl-scenario-description")!;
+  const capPrimaryEl = document.getElementById("wpl-cap-primary")!;
+  const capSoundEl = document.getElementById("wpl-cap-sound")!;
+  const capBlockingEl = document.getElementById("wpl-cap-blocking")!;
+  const clusterPrimaryEl = document.getElementById("wpl-cluster-primary")!;
+  const clusterSecondaryEl = document.getElementById("wpl-cluster-secondary")!;
+  const clusterInterruptEl = document.getElementById("wpl-cluster-interrupt")!;
+  const clusterEmptyEl = document.getElementById("wpl-cluster-empty")!;
+  const comparisonEl = document.getElementById("wpl-comparison")!;
+  const compareBtn = document.getElementById("wpl-compare-btn")!;
+
+  function currentScenario(): Scenario {
+    return SCENARIOS.find((s) => s.id === currentScenarioId)!;
+  }
+
+  function fieldId(warningId: string, field: string): string {
+    return `wpl-${field}-${warningId}`;
+  }
+
+  function renderWarnings(): void {
+    const scenario = currentScenario();
+    warningsEl.innerHTML = WARNINGS.map((w) => {
+      const active = scenario.active.includes(w.id);
+      const suppressedReason = scenario.suppressed?.[w.id];
+      const a = state[w.id];
+      const disabledAttr = active ? "" : "disabled";
+
+      let statusHtml = "";
+      if (suppressedReason) {
+        statusHtml = `<p class="wpl-warning-status wpl-warning-status--suppressed">${suppressedReason}</p>`;
+      } else if (!active) {
+        statusHtml = `<p class="wpl-warning-status">Not active in this scenario.</p>`;
+      }
+
+      return `
+        <fieldset class="wpl-warning ${active ? "" : "wpl-warning--inactive"}" data-warning="${w.id}" ${disabledAttr}>
+          <legend>${w.label}<span class="wpl-warning-stakes">${w.stakes}</span></legend>
+          ${statusHtml}
+          <div class="wpl-field-row">
+            <label class="wpl-field">
+              <span>Zone</span>
+              <select data-control="zone" data-warning="${w.id}" id="${fieldId(w.id, "zone")}" ${disabledAttr}>
+                <option value="secondary" ${a.zone === "secondary" ? "selected" : ""}>Secondary</option>
+                <option value="primary" ${a.zone === "primary" ? "selected" : ""}>Primary</option>
+              </select>
+            </label>
+            <label class="wpl-field">
+              <span>Colour tier</span>
+              <select data-control="color" data-warning="${w.id}" id="${fieldId(w.id, "color")}" ${disabledAttr}>
+                <option value="advisory" ${a.color === "advisory" ? "selected" : ""}>Advisory</option>
+                <option value="caution" ${a.color === "caution" ? "selected" : ""}>Caution</option>
+                <option value="critical" ${a.color === "critical" ? "selected" : ""}>Critical</option>
+              </select>
+            </label>
+            <label class="wpl-field">
+              <span>Sound</span>
+              <select data-control="sound" data-warning="${w.id}" id="${fieldId(w.id, "sound")}" ${disabledAttr}>
+                <option value="none" ${a.sound === "none" ? "selected" : ""}>None</option>
+                <option value="chime" ${a.sound === "chime" ? "selected" : ""}>Chime</option>
+                <option value="alarm" ${a.sound === "alarm" ? "selected" : ""}>Alarm</option>
+              </select>
+            </label>
+            <label class="wpl-field">
+              <span>Persistence</span>
+              <select data-control="persistence" data-warning="${w.id}" id="${fieldId(w.id, "persistence")}" ${disabledAttr}>
+                <option value="transient" ${a.persistence === "transient" ? "selected" : ""}>Transient</option>
+                <option value="acknowledged" ${a.persistence === "acknowledged" ? "selected" : ""}>Until acknowledged</option>
+                <option value="resolved" ${a.persistence === "resolved" ? "selected" : ""}>Until resolved</option>
+              </select>
+            </label>
+            <label class="wpl-field wpl-field--checkbox">
+              <input type="checkbox" data-control="blocking" data-warning="${w.id}" id="${fieldId(w.id, "blocking")}" ${a.blocking ? "checked" : ""} ${disabledAttr} />
+              <span>Full-screen interrupt</span>
+            </label>
+          </div>
+        </fieldset>
+      `;
+    }).join("");
+
+    warningsEl.querySelectorAll("select, input[type=checkbox]").forEach((el) => {
+      el.addEventListener("change", onControlChange);
+    });
+  }
+
+  function activeWarningIds(): string[] {
+    return currentScenario().active;
+  }
+
+  function onControlChange(e: Event): void {
+    const el = e.currentTarget as HTMLSelectElement | HTMLInputElement;
+    const warningId = el.dataset.warning!;
+    const control = el.dataset.control!;
+    const a = state[warningId];
+
+    if (control === "zone") {
+      const value = (el as HTMLSelectElement).value as Zone;
+      if (value === "primary") {
+        // Only one active warning may hold the primary zone — bump whoever
+        // else currently has it back to secondary.
+        for (const id of activeWarningIds()) {
+          if (id !== warningId && state[id].zone === "primary") state[id].zone = "secondary";
+        }
+      }
+      a.zone = value;
+    } else if (control === "color") {
+      a.color = (el as HTMLSelectElement).value as Color;
+    } else if (control === "persistence") {
+      a.persistence = (el as HTMLSelectElement).value as Persistence;
+    } else if (control === "sound") {
+      const value = (el as HTMLSelectElement).value as Sound;
+      soundOrder = soundOrder.filter((id) => id !== warningId);
+      if (value === "none") {
+        a.sound = value;
+      } else {
+        a.sound = value;
+        soundOrder.push(warningId);
+        // Cap of two concurrent sounds among active warnings — bump the
+        // oldest one back to "none" once a third is requested.
+        const sounding = soundOrder.filter((id) => activeWarningIds().includes(id) && state[id].sound !== "none");
+        while (sounding.length > 2) {
+          const bumped = sounding.shift()!;
+          state[bumped].sound = "none";
+          soundOrder = soundOrder.filter((id) => id !== bumped);
+        }
+      }
+    } else if (control === "blocking") {
+      const checked = (el as HTMLInputElement).checked;
+      if (checked) {
+        // Only one active warning may hold the blocking interrupt.
+        for (const id of activeWarningIds()) {
+          if (id !== warningId) state[id].blocking = false;
+        }
+      }
+      a.blocking = checked;
+    }
+
+    comparisonEl.hidden = true;
+    renderWarnings();
+    renderCluster();
+  }
+
+  function renderCaps(): void {
+    const ids = activeWarningIds();
+    const primaryCount = ids.filter((id) => state[id].zone === "primary").length;
+    const soundCount = ids.filter((id) => state[id].sound !== "none").length;
+    const blockingCount = ids.filter((id) => state[id].blocking).length;
+    capPrimaryEl.textContent = `${primaryCount} / 1`;
+    capSoundEl.textContent = `${soundCount} / 2`;
+    capBlockingEl.textContent = `${blockingCount} / 1`;
+  }
+
+  function renderCluster(): void {
+    renderCaps();
+    const ids = activeWarningIds();
+    const primaryId = ids.find((id) => state[id].zone === "primary");
+    const blockingId = ids.find((id) => state[id].blocking);
+
+    if (blockingId) {
+      const w = WARNINGS.find((x) => x.id === blockingId)!;
+      clusterInterruptEl.hidden = false;
+      clusterInterruptEl.textContent = `FULL-SCREEN INTERRUPT — ${w.label}`;
+    } else {
+      clusterInterruptEl.hidden = true;
+      clusterInterruptEl.textContent = "";
+    }
+
+    if (primaryId) {
+      const w = WARNINGS.find((x) => x.id === primaryId)!;
+      const a = state[primaryId];
+      clusterPrimaryEl.innerHTML = `
+        <div class="wpl-cluster-primary-card ${COLOR_BADGE_CLASS[a.color]}">
+          <span class="dash-badge ${COLOR_BADGE_CLASS[a.color]}">${COLOR_LABEL[a.color]}</span>
+          <strong>${w.label}</strong>
+          <span class="wpl-cluster-meta">${a.sound !== "none" ? SOUND_LABEL[a.sound] + " sound" : "Silent"} · ${PERSISTENCE_LABEL[a.persistence]}</span>
+        </div>
+      `;
+      clusterEmptyEl.hidden = true;
+    } else {
+      clusterPrimaryEl.innerHTML = "";
+      clusterEmptyEl.hidden = false;
+    }
+
+    const secondaryIds = ids.filter((id) => id !== primaryId);
+    clusterSecondaryEl.innerHTML = secondaryIds
+      .map((id) => {
+        const w = WARNINGS.find((x) => x.id === id)!;
+        const a = state[id];
+        return `
+          <div class="wpl-cluster-chip">
+            <span class="dash-badge ${COLOR_BADGE_CLASS[a.color]}">${w.label}</span>
+            <span class="wpl-cluster-meta">${a.sound !== "none" ? SOUND_LABEL[a.sound] : "Silent"} · ${PERSISTENCE_LABEL[a.persistence]}</span>
+          </div>
+        `;
+      })
+      .join("");
+  }
+
+  function renderComparison(): void {
+    const scenario = currentScenario();
+    const rows = scenario.active
+      .map((id) => {
+        const w = WARNINGS.find((x) => x.id === id)!;
+        const ref = scenario.reference[id];
+        const a = state[id];
+        const matches: string[] = [];
+        const differs: string[] = [];
+        if (a.zone === ref.zone) matches.push("zone"); else differs.push("zone");
+        if (a.sound === ref.sound) matches.push("sound"); else differs.push("sound");
+        if (a.blocking === ref.blocking) matches.push("full-screen interrupt"); else differs.push("full-screen interrupt");
+        if (a.persistence === ref.persistence) matches.push("persistence"); else differs.push("persistence");
+
+        return `
+          <div class="wpl-comparison-row ${differs.length === 0 ? "wpl-comparison-row--aligned" : ""}">
+            <h4>${w.label}</h4>
+            <p class="wpl-comparison-yours">
+              Yours: ${ref.zone === a.zone ? "" : ""}zone <strong>${a.zone}</strong>,
+              sound <strong>${SOUND_LABEL[a.sound]}</strong>,
+              interrupt <strong>${a.blocking ? "on" : "off"}</strong>,
+              persistence <strong>${PERSISTENCE_LABEL[a.persistence]}</strong>
+            </p>
+            <p class="wpl-comparison-reference">
+              Reference: zone <strong>${ref.zone}</strong>,
+              sound <strong>${SOUND_LABEL[ref.sound]}</strong>,
+              interrupt <strong>${ref.blocking ? "on" : "off"}</strong>,
+              persistence <strong>${PERSISTENCE_LABEL[ref.persistence]}</strong>
+            </p>
+            <p class="wpl-comparison-rationale">${ref.rationale}</p>
+          </div>
+        `;
+      })
+      .join("");
+
+    comparisonEl.innerHTML = `
+      <p class="wpl-comparison-intro">
+        This isn't a score — it's the reasoning behind one designed answer.
+        Where you differ, that's worth thinking about, not automatically
+        fixing.
+      </p>
+      ${rows}
+    `;
+    comparisonEl.hidden = false;
+  }
+
+  function selectScenario(id: string): void {
+    currentScenarioId = id;
+    const scenario = currentScenario();
+    descriptionEl.textContent = scenario.description;
+    root!.querySelectorAll<HTMLButtonElement>(".wpl-scenario-btn").forEach((btn) => {
+      const isActive = btn.dataset.scenario === id;
+      btn.setAttribute("aria-pressed", String(isActive));
+      btn.classList.toggle("at-button--outline", !isActive);
+    });
+    comparisonEl.hidden = true;
+    renderWarnings();
+    renderCluster();
+  }
+
+  root.querySelectorAll<HTMLButtonElement>(".wpl-scenario-btn").forEach((btn) => {
+    btn.addEventListener("click", () => selectScenario(btn.dataset.scenario!));
+  });
+
+  compareBtn.addEventListener("click", renderComparison);
+
+  selectScenario(currentScenarioId);
+</script>
+
+<style>
+  .wpl {
+    display: flex;
+    flex-direction: column;
+    gap: var(--at-spacing-lg);
+  }
+
+  .wpl-scenario-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--at-spacing-sm);
+  }
+
+  .wpl-scenario-btn[aria-pressed="true"] {
+    background: var(--at-accent);
+    color: var(--at-on-accent);
+  }
+
+  .wpl-scenario-description {
+    margin: 0;
+    color: var(--at-text-secondary);
+    font-size: var(--at-font-size-sm);
+  }
+
+  .wpl-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--at-spacing-lg);
+  }
+
+  @media (width >= 900px) {
+    .wpl-layout {
+      grid-template-columns: 3fr 2fr;
+      align-items: start;
+    }
+  }
+
+  .wpl-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--at-spacing-md);
+  }
+
+  .wpl-caps-list {
+    margin: 0;
+    padding-inline-start: 1.1em;
+    font-size: var(--at-font-size-sm);
+  }
+
+  .wpl-warnings {
+    display: flex;
+    flex-direction: column;
+    gap: var(--at-spacing-md);
+  }
+
+  .wpl-warning {
+    display: flex;
+    flex-direction: column;
+    gap: var(--at-spacing-sm);
+  }
+
+  .wpl-warning--inactive {
+    opacity: 0.55;
+  }
+
+  .wpl-warning legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--at-spacing-sm);
+    padding: 0 var(--at-spacing-xs);
+    font-weight: 600;
+  }
+
+  .wpl-warning-stakes {
+    color: var(--at-text-muted);
+    font-size: var(--at-font-size-xs);
+    font-weight: 400;
+  }
+
+  .wpl-warning-status {
+    margin: 0;
+    color: var(--at-text-muted);
+    font-size: var(--at-font-size-xs);
+    font-style: italic;
+  }
+
+  .wpl-warning-status--suppressed {
+    color: var(--at-warning);
+  }
+
+  .wpl-field-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--at-spacing-md);
+  }
+
+  .wpl-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: var(--at-font-size-xs);
+  }
+
+  .wpl-field select {
+    font-size: var(--at-font-size-sm);
+  }
+
+  .wpl-field--checkbox {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--at-spacing-sm);
+    align-self: flex-end;
+  }
+
+  .wpl-preview-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--at-spacing-md);
+    position: sticky;
+    top: var(--at-spacing-lg);
+  }
+
+  .wpl-cluster {
+    min-height: 12rem;
+  }
+
+  .wpl-cluster-interrupt {
+    margin-block-end: var(--at-spacing-sm);
+    padding: var(--at-spacing-sm) var(--at-spacing-md);
+    border-radius: var(--at-border-radius);
+    background: var(--at-error-soft);
+    color: var(--at-error);
+    font-size: var(--at-font-size-xs);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .wpl-cluster-primary-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--at-spacing-xs);
+    margin-block-end: var(--at-spacing-md);
+    padding: var(--at-spacing-md);
+    border-radius: var(--at-border-radius);
+    background: var(--at-bg-alt);
+  }
+
+  .wpl-cluster-primary-card strong {
+    font-size: var(--at-font-size-h4);
+  }
+
+  .wpl-cluster-meta {
+    color: var(--at-text-muted);
+    font-size: var(--at-font-size-xs);
+  }
+
+  .wpl-cluster-empty {
+    color: var(--at-text-muted);
+    font-size: var(--at-font-size-sm);
+    font-style: italic;
+  }
+
+  .wpl-cluster-secondary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--at-spacing-sm);
+  }
+
+  .wpl-cluster-chip {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: var(--at-spacing-xs) var(--at-spacing-sm);
+    border: 1px solid var(--at-divider);
+    border-radius: var(--at-border-radius);
+  }
+
+  .wpl-compare-btn {
+    align-self: flex-start;
+  }
+
+  .wpl-comparison {
+    display: flex;
+    flex-direction: column;
+    gap: var(--at-spacing-md);
+  }
+
+  .wpl-comparison-intro {
+    margin: 0;
+    color: var(--at-text-secondary);
+    font-size: var(--at-font-size-sm);
+  }
+
+  .wpl-comparison-row {
+    border: 1px solid var(--at-divider);
+    border-radius: var(--at-border-radius);
+    padding: var(--at-spacing-md);
+  }
+
+  .wpl-comparison-row--aligned {
+    border-color: var(--at-success);
+  }
+
+  .wpl-comparison-row h4 {
+    margin: 0 0 var(--at-spacing-xs);
+    font-size: var(--at-font-size-base);
+  }
+
+  .wpl-comparison-yours,
+  .wpl-comparison-reference {
+    margin: 0 0 0.3rem;
+    font-size: var(--at-font-size-sm);
+  }
+
+  .wpl-comparison-rationale {
+    margin: var(--at-spacing-sm) 0 0;
+    color: var(--at-text-secondary);
+    font-size: var(--at-font-size-sm);
+  }
+
+  .wpl-reflection textarea {
+    width: 100%;
+    box-sizing: border-box;
+  }
+</style>

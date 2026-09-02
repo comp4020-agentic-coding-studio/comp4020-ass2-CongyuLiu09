@@ -1,0 +1,29 @@
+---
+import Card from "astro-theme-university/components/Card.astro";
+import CardGrid from "astro-theme-university/components/CardGrid.astro";
+import ContentLayout from "../../layouts/ContentLayout.astro";
+import { siteConfig } from "../../site-config";
+---
+
+<ContentLayout
+  title="Interactive labs"
+  description="Simulators for practising the trade-offs each week's reading only describes."
+  {...siteConfig}
+>
+  <p>
+    A reading can tell you that a dashboard has to choose what deserves a
+    driver's attention. It can't make you feel what happens when two
+    warnings compete for the same sound, the same instant, and the same
+    driver. These labs put you in the allocation seat instead of describing
+    it to you.
+  </p>
+  <CardGrid columns={2}>
+    <Card headingLevel="h2" title="Warning Priority Lab" href="/interactives/warning-priority-lab/">
+      <p>
+        Allocate seven real warning types across a scarce set of visual and
+        audio resources, then see how the same warning's correct treatment
+        changes as the driving scenario changes.
+      </p>
+    </Card>
+  </CardGrid>
+</ContentLayout>
