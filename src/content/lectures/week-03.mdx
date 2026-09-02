@@ -13,6 +13,10 @@ related:
   - sessions/03-the-idiot-light
 ---
 
+import gaugeToLightSwap from "../../decks/assets/week-03/gauge-to-light-swap.svg";
+import milIconCluster from "../../decks/assets/week-03/mil-icon-cluster.svg";
+import obdScannerCode from "../../decks/assets/week-03/obd-scanner-code.svg";
+
 A gauge tells you a number and lets you watch it move. A light tells you one
 bit: attend, or don't. Somewhere between those two is a decision someone made
 about what a driver could be trusted to read, and how much of their attention
@@ -58,6 +62,11 @@ it. An oil-pressure light coming on at speed can mean the engine has seconds
 of useful life left, with no gauge history to say whether this was sudden or
 overdue.
 
+<figure class="dash-figure">
+  <img src={gaugeToLightSwap.src} alt="Side-by-side comparison of two dashboard trims from the same model and year: the left cluster has a round oil-pressure gauge numbered 0 to 80 psi, the right has the same bezel filled by a single warning light, with an arrow between them labelled '80 psi of range to 1 bit'" />
+  <figcaption>Fig. 3.1 — Same bezel, two trims. Everything between "fine" and the switch point is gone on the right.</figcaption>
+</figure>
+
 The check-engine light is the same idea pushed to its most ambiguous
 extreme. Where the idiot light collapsed one continuous value to one binary
 state, the check-engine light collapses hundreds of possible underlying
@@ -68,15 +77,15 @@ that something, somewhere, needs a diagnostic scan, with no way to tell
 "pull over now" from "get this looked at eventually" from the dashboard
 itself.
 
-## Suggested reference images
+<figure class="dash-figure">
+  <img src={milIconCluster.src} alt="A driver's-eye diagram of a car dashboard showing an illuminated amber engine-shaped warning icon among several other unlit telltales, circled with a callout reading '1 of 400+ possible stored codes'" />
+  <figcaption>Fig. 3.2 — One icon, hundreds of possible causes behind it.</figcaption>
+</figure>
 
-- A 1950s–60s American sedan's instrument panel showing an ammeter or
-  oil-pressure gauge, alongside a same-era model with a warning light in its
-  place
-- A modern production dashboard with the check-engine (MIL) icon
-  illuminated, driver's-eye view
-- An OBD-II scan-tool readout showing a single check-engine trigger resolving
-  into a specific stored fault code
+<figure class="dash-figure">
+  <img src={obdScannerCode.src} alt="A handheld OBD-II diagnostic scan tool showing the fault code P0455 and a short description, bracketed to a small inset of the dashboard's single lit warning icon, labelled 'same event, two very different amounts of information'" />
+  <figcaption>Fig. 3.3 — The information was always there; the dashboard just doesn't surface it. A scan tool does, after the fact and off the dashboard entirely.</figcaption>
+</figure>
 
 Next week stays with this same telltale bank and asks a different question:
 once you've decided something deserves a light, how does a driver tell it

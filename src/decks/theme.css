@@ -139,13 +139,14 @@
 
 .reveal .slides section .dash-flow {
   display: flex;
+  flex-wrap: wrap;
   align-items: stretch;
   gap: var(--at-spacing-md);
   margin-block: var(--at-spacing-md);
 }
 
 .reveal .slides section .dash-flow__step {
-  flex: 1 1 0;
+  flex: 1 1 11rem;
   position: relative;
   border: 1px solid var(--at-divider);
   border-radius: var(--at-border-radius);

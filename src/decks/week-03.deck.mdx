@@ -37,6 +37,12 @@ By the end of this week you should be able to:
 - **propose** at least one concrete way to recover some of the lost
   information without returning to a full gauge
 
+```notes
+Read these once, then move fast — the objectives land better as a
+checklist to return to at the end (they map directly onto the summary
+slide) than as something to dwell on now.
+```
+
 ---
 
 ## Opening example: the light comes on
@@ -49,6 +55,12 @@ That single icon is standing in for one of several hundred possible stored
 diagnostic trouble codes — a loose fuel cap, a failing oxygen sensor, a
 misfiring cylinder that could be quietly destroying your catalytic converter
 right now. The car knows which one. The dashboard doesn't tell you.
+
+```notes
+If anyone volunteers a real story of ignoring their own check-engine light
+for months, use it — it's the perfect illustration of where this lecture
+ends up (alarm fatigue, week 10's topic) landing early.
+```
 
 ---
 
@@ -66,6 +78,13 @@ that it is *on*. It does not say:
 This is the end state of a design lineage that starts with the oil-pressure
 gauge disappearing from a 1958 Chevrolet. Today's lecture traces that
 lineage.
+
+```notes
+Name the shape explicitly here: everything from this point on is one
+process — continuous signal, threshold, binary decision, one lamp — showing
+up again and again with different inputs. Students who spot that pattern
+early get more out of the case studies that follow.
+```
 
 ---
 
@@ -85,6 +104,12 @@ A light collapses all three into one fact: are we above the line, or below
 it. That is not a smaller version of the same information — it is a
 different kind of information.
 
+```notes
+Push on "different kind," not "smaller amount" — students will want to say
+the light is just a lossy-compressed gauge, and the rest of the lecture is
+the argument against that framing.
+```
+
 ---
 
 ## Why manufacturers made the swap
@@ -100,6 +125,13 @@ Read that way, the decision wasn't a downgrade. It was a correction: stop
 paying for precision nobody was using, and spend the saving on a signal
 nobody can misread. The idiot light is a rational response to a real
 measured failure of the gauge, not just cheapness.
+
+```notes
+This is the evidence the later misconception slide names directly — plant
+it firmly here so that slide reads as a callback, not a new claim. Ask the
+room: "so was this cost-cutting?" before answering — most will say yes,
+which is exactly the gap the misconception slide closes.
+```
 
 ---
 
@@ -117,6 +149,12 @@ This is the process worth holding onto for the rest of the week: **a
 continuous physical quantity, reduced to one threshold, reduced to one
 circuit state, reduced to one lamp.** Every later telltale — tyre pressure,
 brake fluid, check engine — inherits this same shape.
+
+```notes
+Physically hold up (or sketch) a simple switch if you have one — the point
+that lands hardest is that there is no wire for "getting close." The
+absence isn't a software limitation, it's a hardware one.
+```
 
 ---
 
@@ -139,6 +177,44 @@ compressed into four rows, and every later example (TPMS, check engine, the
 Alert Audit brief in week 4) is a variation on the same four stages.
 ```
 
+```notes
+Read the last line aloud slowly: 9 psi and 79 psi, same dashboard. That's
+the whole week in one sentence. The diagram on the next slide is the same
+four rows, redrawn as boxes — use it if the table alone doesn't land.
+```
+
+---
+
+## The same process, as a diagram
+
+<div class="dash-flow">
+  <div class="dash-flow__step">
+    <span class="dash-flow__step-label">Stage 1</span>
+    Continuous signal — oil pressure, 0–80 psi, changing constantly
+  </div>
+  <div class="dash-flow__step">
+    <span class="dash-flow__step-label">Stage 2</span>
+    Threshold check — compare the reading to a fixed cutoff (e.g. 7 psi)
+  </div>
+  <div class="dash-flow__step">
+    <span class="dash-flow__step-label">Stage 3</span>
+    Binary decision — "fine" or "not fine," nothing in between
+  </div>
+  <div class="dash-flow__step">
+    <span class="dash-flow__step-label">Stage 4</span>
+    Single light — lamp off, or lamp on
+  </div>
+</div>
+
+Each arrow is a place information is thrown away, not just relayed forward.
+
+```notes
+Point at each arrow in turn and ask "what does this arrow delete?" Stage
+1→2 deletes magnitude away from the threshold. Stage 2→3 deletes how close
+to the threshold. Stage 3→4 deletes nothing further — by this point there's
+only one bit left to lose.
+```
+
 ---
 
 ## Real example: the 1958–1965 US full-size sedan
@@ -152,11 +228,24 @@ car: buyers who wanted the old continuous readout had to pay to get it back.
 That inversion — simplicity as the default, precision as the upsell — is the
 detail worth remembering when the case study returns later in the lecture.
 
+```notes
+Worth a beat of silence: ask who assumed "simpler" always means "cheaper
+version, sold to people who couldn't afford better." This case study is
+evidence against that assumption on its own terms — the gauge was the
+option, not the standard.
+```
+
 ---
 
 ![Side-by-side comparison of two dashboard trims from the same model and year: the left cluster has a round oil-pressure gauge numbered 0 to 80 psi, the right has the same bezel filled by a single warning light, with an arrow between them labelled "80 psi of range to 1 bit"](./assets/week-03/gauge-to-light-swap.svg)
 
 *Same model, same year, two different answers to the same question.*
+
+```notes
+Give this one a few extra seconds on screen — it's the slide students
+photograph. If you're short on time elsewhere, this is not the slide to
+rush past.
+```
 
 ---
 
@@ -172,6 +261,12 @@ one-bit trigger and still fix the ambiguity by spending words on it. That's
 next week's topic; here it's evidence that manufacturers noticed the same
 gap you're noticing now, decades before the check-engine light existed.
 
+```notes
+Don't let this slide become a Check Control history lesson — the one point
+that matters is "binary trigger" and "vocabulary" are separable decisions.
+Everything else is colour.
+```
+
 ---
 
 ## Real example: Honda's blinking check-engine light
@@ -186,6 +281,12 @@ than a second lamp — useful here because it's the cheapest possible fix
 from "not urgent," not which of several hundred codes triggered either
 state.
 
+```notes
+The one-liner to land: a second bit doesn't have to mean a second lamp.
+Timing (steady vs flashing) is free — no new hardware, no new colour — which
+is exactly why it's the cheapest fix a manufacturer can ship.
+```
+
 ---
 
 ## Real example: Volvo's TPMS convention
@@ -198,6 +299,13 @@ as a direct contrast with Honda's blink convention: same technique (steady
 vs flashing), applied to distinguish a *measured problem* from an *unmeasured
 unknown* rather than to rank urgency. Two manufacturers, the same one extra
 bit, spent on two different distinctions.
+
+```notes
+Ask the room which distinction (Honda's urgency tier, or Volvo's
+fault-vs-unknown) they'd rather have if they could only pick one — there's
+no obviously correct answer, which is the point: the same one extra bit can
+be spent on genuinely different things.
+```
 
 ---
 
