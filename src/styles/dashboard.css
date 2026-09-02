@@ -1,0 +1,208 @@
+/* The course's instrument-cluster visual layer, on top of the theme's own
+ * tokens (astro-theme-university/styles/tokens.css) and the Slop brand
+ * override (astro-theme-slop/slop.css). Extends rather than replaces: the
+ * theme already carries OKLCH-derived surfaces, four status colours and
+ * accessible focus states, so this file borrows instrument-panel
+ * *characteristics* (severity chips, a process-panel frame, a diagnostic
+ * figure treatment) rather than re-skinning the theme. See PROCESS.md for
+ * why extend-vs-rebuild was the call.
+ *
+ * Deliberately unlayered: the theme's own rules live in `@layer at.*`, and
+ * an unlayered rule always outranks a layered one regardless of specificity
+ * (the same technique components.css uses for its astro-island override,
+ * see the comment there). That guarantees these course-specific rules win
+ * without a specificity fight against the platform. */
+
+/* Severity chip — compact, inline, for use inside interactive components
+ * where a block-level :::callout would break the layout. Prose content
+ * should prefer the theme's own `:::info` / `:::tip` / `:::warning` /
+ * `:::error` directives (see astro-theme-university/remark-callout.ts);
+ * this class exists for markup a directive can't reach. */
+.dash-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.15em 0.65em;
+  border: 1px solid currentColor;
+  border-radius: var(--at-border-radius);
+  font-size: var(--at-font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.dash-badge--advisory {
+  color: var(--at-info);
+  background: var(--at-info-soft);
+}
+
+.dash-badge--normal {
+  color: var(--at-success);
+  background: var(--at-success-soft);
+}
+
+.dash-badge--caution {
+  color: var(--at-warning);
+  background: var(--at-warning-soft);
+}
+
+.dash-badge--critical {
+  color: var(--at-error);
+  background: var(--at-error-soft);
+}
+
+/* Instrument panel — a bordered zone with a thin accent bar standing in for
+ * a bezel edge, used for process steps and for the simulator's control /
+ * readout zones. The accent bar colour follows --at-accent so a panel can
+ * be retinted per severity the same way `.at-callout--warning` retints by
+ * swapping --at-accent underneath it. */
+.dash-panel {
+  position: relative;
+  border: 1px solid var(--at-divider);
+  border-radius: var(--at-border-radius);
+  background: var(--at-bg-elevated);
+  padding: var(--at-spacing-lg);
+  padding-block-start: calc(var(--at-spacing-lg) + 3px);
+}
+
+.dash-panel::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 3px;
+  border-radius: var(--at-border-radius) var(--at-border-radius) 0 0;
+  background: var(--at-accent);
+}
+
+.dash-panel > :last-child {
+  margin-block-end: 0;
+}
+
+.dash-panel__label {
+  display: block;
+  margin-block-end: var(--at-spacing-sm);
+  color: var(--at-text-muted);
+  font-size: var(--at-font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.dash-panel--caution {
+  --at-accent: var(--at-warning);
+}
+
+.dash-panel--critical {
+  --at-accent: var(--at-error);
+}
+
+/* Process flow — a labelled sequence of panels, for the "sensor to lamp"
+ * style chains the course keeps coming back to. Wraps onto its own rows on
+ * narrow viewports rather than compressing the panels unreadably. */
+.dash-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: var(--at-spacing-md);
+  margin-block: var(--at-spacing-lg);
+}
+
+.dash-flow__step {
+  flex: 1 1 10rem;
+  position: relative;
+  border: 1px solid var(--at-divider);
+  border-radius: var(--at-border-radius);
+  background: var(--at-bg-elevated);
+  padding: var(--at-spacing-md);
+}
+
+.dash-flow__step-label {
+  display: block;
+  margin-block-end: var(--at-spacing-xs);
+  color: var(--at-text-muted);
+  font-size: var(--at-font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* The connecting arrow between steps. A ::after on every step but the last
+ * keeps the markup to a flat list of steps — no separate arrow elements to
+ * keep in sync when a step is added or removed. */
+.dash-flow__step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  inset-inline-end: calc(-1 * var(--at-spacing-md) - 1px);
+  width: calc(var(--at-spacing-md) + 2px);
+  height: 2px;
+  background: var(--at-divider);
+  transform: translateY(-50%);
+}
+
+@media (width < 640px) {
+  .dash-flow {
+    flex-direction: column;
+  }
+
+  .dash-flow__step:not(:last-child)::after {
+    top: auto;
+    bottom: calc(-1 * var(--at-spacing-md) - 1px);
+    inset-inline-start: var(--at-spacing-md);
+    width: 2px;
+    height: calc(var(--at-spacing-md) + 2px);
+    transform: none;
+  }
+}
+
+/* Diagnostic figure — the framed treatment for the course's process and
+ * comparison diagrams. Authored as raw HTML inside markdown (Astro's
+ * markdown passes block HTML through), not a directive, so it composes
+ * with an ordinary <figcaption>. */
+figure.dash-figure {
+  border: 1px solid var(--at-divider);
+  border-radius: var(--at-border-radius);
+  background: var(--at-bg-elevated);
+  padding: var(--at-spacing-md);
+}
+
+figure.dash-figure img,
+figure.dash-figure svg {
+  border-radius: calc(var(--at-border-radius) / 2);
+}
+
+figure.dash-figure figcaption {
+  border-block-end: none;
+  padding-block-end: 0;
+  font-family: var(--at-font-mono);
+  font-size: var(--at-font-size-xs);
+}
+
+/* Nav current-page tick — the theme already recolours the active link; this
+ * adds a small instrument-style indicator bar rather than relying on colour
+ * alone, so the current page reads at a glance and isn't colour-only. */
+.at-nav-links a[aria-current="page"] {
+  position: relative;
+}
+
+.at-nav-links a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: var(--at-spacing-sm);
+  right: var(--at-spacing-sm);
+  bottom: -1px;
+  height: 2px;
+  background: var(--at-accent);
+  border-radius: 1px;
+}
+
+@media (width >= 640px) {
+  .at-nav-links a[aria-current="page"]::after {
+    left: var(--at-spacing-xs);
+    right: var(--at-spacing-xs);
+  }
+}

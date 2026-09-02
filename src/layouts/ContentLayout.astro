@@ -1,0 +1,13 @@
+---
+import ContentLayout, {
+  type ContentLayoutProps,
+} from "astro-theme-university/layouts/ContentLayout.astro";
+import "../styles/dashboard.css";
+
+type Props = ContentLayoutProps;
+---
+
+<ContentLayout {...Astro.props}>
+  <slot name="head" slot="head" />
+  <slot />
+</ContentLayout>
