@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" width="760" height="460">
+  <rect x="20" y="30" width="720" height="400" rx="18" fill="#171717" stroke="#e6e6e6" stroke-opacity="0.3" stroke-width="2"/>
+
+  <!-- needle: fuel gauge, left -->
+  <circle cx="140" cy="180" r="80" fill="none" stroke="#e6e6e6" stroke-width="4"/>
+  <line x1="140" y1="180" x2="140" y2="115" stroke="#e6e6e6" stroke-width="4" stroke-linecap="round" transform="rotate(35 140 180)"/>
+  <circle cx="140" cy="180" r="7" fill="#e6e6e6"/>
+  <text x="140" y="275" text-anchor="middle" fill="#e6e6e6" font-family="sans-serif" font-size="15">E — — — F</text>
+
+  <!-- discrete light: telltale, second -->
+  <circle cx="320" cy="170" r="30" fill="#dc2626"/>
+  <path d="M320 156 v10 M320 178 h0.1" stroke="#171717" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- icon: pictogram, third -->
+  <g transform="translate(430,145)">
+    <rect x="0" y="0" width="60" height="50" rx="6" fill="none" stroke="#e6e6e6" stroke-width="3"/>
+    <path d="M12 35 L30 10 L48 35 Z" fill="#e6e6e6"/>
+  </g>
+
+  <!-- text: numeric readout, fourth -->
+  <rect x="540" y="150" width="100" height="40" rx="4" fill="none" stroke="#e6e6e6" stroke-width="2.5"/>
+  <text x="590" y="177" text-anchor="middle" fill="#e6e6e6" font-family="monospace" font-size="20">412 km</text>
+
+  <!-- sound: speaker glyph, fifth -->
+  <g transform="translate(680,150)">
+    <path d="M0 15 L12 15 L26 2 L26 38 L12 25 L0 25 Z" fill="#e6e6e6"/>
+    <path d="M34 8 A22 22 0 0 1 34 32" fill="none" stroke="#e6e6e6" stroke-width="3"/>
+  </g>
+
+  <text x="380" y="400" text-anchor="middle" fill="#e6e6e6" font-family="sans-serif" font-size="16" font-style="italic">the same five channels, every week from here</text>
+</svg>

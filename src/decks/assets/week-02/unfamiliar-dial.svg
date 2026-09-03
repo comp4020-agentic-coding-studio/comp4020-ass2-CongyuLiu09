@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" width="760" height="460">
+  <rect x="60" y="30" width="640" height="400" rx="18" fill="#171717" stroke="#e6e6e6" stroke-opacity="0.3" stroke-width="2"/>
+
+  <circle cx="380" cy="230" r="150" fill="none" stroke="#e6e6e6" stroke-width="4"/>
+
+  <g font-family="sans-serif" font-size="18" fill="#e6e6e6" text-anchor="middle">
+    <text x="260" y="320">0</text>
+    <text x="228" y="230">1</text>
+    <text x="246" y="145">2</text>
+    <text x="310" y="95">3</text>
+    <text x="380" y="80">4</text>
+    <text x="450" y="95">5</text>
+    <text x="514" y="145">6</text>
+    <text x="532" y="230">7</text>
+    <text x="500" y="320">8</text>
+  </g>
+
+  <!-- red zone 6-8, the only printed threshold -->
+  <path d="M 495 165 A 150 150 0 0 1 495 295" fill="none" stroke="#dc2626" stroke-width="9"/>
+
+  <!-- needle resting near 2, unmarked -->
+  <line x1="380" y1="230" x2="380" y2="110" stroke="#e6e6e6" stroke-width="5" stroke-linecap="round" transform="rotate(-58 380 230)"/>
+  <circle cx="380" cy="230" r="9" fill="#e6e6e6"/>
+</svg>

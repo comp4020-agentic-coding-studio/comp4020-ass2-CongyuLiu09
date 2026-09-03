@@ -159,6 +159,23 @@
   }
 }
 
+/* Annotated figure — an image with one or more badge callouts pinned to
+ * specific points on it, for pointing at *where on the instrument* a claim
+ * applies rather than describing the location in prose. Composes with
+ * .dash-figure (the annotated image is still framed the same way); each
+ * point's position is set per-instance with the --x/--y custom properties
+ * rather than a modifier class, since the position is data, not a variant. */
+.dash-annotated {
+  position: relative;
+}
+
+.dash-annotated__point {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(-50%, -50%);
+}
+
 /* Diagnostic figure — the framed treatment for the course's process and
  * comparison diagrams. Authored as raw HTML inside markdown (Astro's
  * markdown passes block HTML through), not a directive, so it composes
@@ -170,9 +187,17 @@ figure.dash-figure {
   padding: var(--at-spacing-md);
 }
 
+/* The course's diagram SVGs are hand-authored against a fixed dark
+ * instrument-panel palette (near-black panel fills, light-grey strokes) that
+ * does not adapt to the page's light/dark theme tokens. Giving the image
+ * itself a matching fixed-dark backdrop (rather than the theme's
+ * light-in-light-mode --at-bg-elevated) keeps every stroke and label legible
+ * regardless of which mode the reader's system is in — the figure *frame*
+ * still follows the page theme via .dash-figure's own background above. */
 figure.dash-figure img,
 figure.dash-figure svg {
   border-radius: calc(var(--at-border-radius) / 2);
+  background: #171717;
 }
 
 figure.dash-figure figcaption {
