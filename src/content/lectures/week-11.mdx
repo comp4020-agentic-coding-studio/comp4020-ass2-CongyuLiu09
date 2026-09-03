@@ -13,6 +13,9 @@ related:
   - sessions/11-same-car-different-country
 ---
 
+import lhdRhdGlancePath from "../../decks/assets/week-11/lhd-rhd-glance-path.svg";
+import euroUsTelltaleComparison from "../../decks/assets/week-11/euro-us-telltale-comparison.svg";
+
 Every week so far has treated a dashboard's vocabulary as though it were
 fixed once and shipped everywhere: red still means red, a chime still means
 attend-to-this, an icon still means the same fault. That's mostly true within
@@ -51,6 +54,11 @@ A driver's glance path from road to cluster to mirror to blind spot is a
 learned motor habit, tuned over years to one geometry. It does not simply
 flip when the car does.
 
+<figure class="dash-figure">
+  <img src={lhdRhdGlancePath.src} alt="Two photographs taken from the driver's seat of the same car model, one right-hand-drive and one left-hand-drive, showing the instrument cluster's mirrored position relative to the door and windscreen pillar" />
+  <figcaption>Fig. 11.1 — Same cluster, same information, different geometry: the glance path a driver has practised for years doesn't mirror along with the wheel.</figcaption>
+</figure>
+
 ## Case study: the same telltale, tuned three ways
 
 Take speed-limit-recognition warnings and seatbelt-reminder chimes as the
@@ -78,15 +86,29 @@ market, by regulation, convention and habit, and a manufacturer either
 harmonises around the strictest common vocabulary or manages three separate
 ones.
 
-## Suggested reference images
+<figure class="dash-figure">
+  <img src={euroUsTelltaleComparison.src} alt="Two car instrument clusters from the same model side by side, one showing a speed-limit-recognition icon and escalating seatbelt warning graphic, the other lacking the speed-limit icon and showing a simpler seatbelt warning light" />
+  <figcaption>Fig. 11.2 — One platform, two vocabularies: the European cluster on the left carries an alert the US-market cluster on the right simply doesn't have.</figcaption>
+</figure>
 
-- A comparison of the same vehicle model's dashboard in right-hand-drive and
-  left-hand-drive configuration, showing the instrument cluster's position
-  relative to the door pillar in each
-- A Euro NCAP rating document or press page listing seatbelt-reminder or
-  speed-limit-recognition as a scoring criterion
-- Two dashboard photographs of the same model — one European-market, one
-  US-market — with a visibly different telltale or chime-related feature set
+<div class="dash-panel">
+  <span class="dash-panel__label">This week's channel, against the framework</span>
+
+  Market-dependent vocabulary itself, read against the six-question
+  framework introduced in week 1: **urgency** thresholds that regulators,
+  not physics, set differently market by market; **visibility**, including
+  the glance path's own geometry, which changes under RHD/LHD in ways a
+  simple mirror-image doesn't capture; **meaning** that can differ by
+  region even when the icon looks identical; **modality** unchanged across
+  markets — still sight, sound and touch — even while what triggers each
+  channel diverges; **timing** rules such as escalating seatbelt chimes
+  that some regulators mandate and others don't; and a **required driver
+  action** that a manufacturer can choose to demand in one market and leave
+  optional in another. The lesson this week adds to the framework is that
+  none of its six answers is a fact about the vehicle — each is a decision
+  a regulator or a market made, and a different regulator can make a
+  different one for the identical car.
+</div>
 
 Next week is the capstone: if this week showed that a dashboard's vocabulary
 is contingent on regulation and habit rather than fixed by physics, week 12

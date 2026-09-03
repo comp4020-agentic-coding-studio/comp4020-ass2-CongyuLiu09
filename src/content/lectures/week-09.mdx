@@ -13,6 +13,10 @@ related:
   - sessions/09-almost-autonomous
 ---
 
+import fcwLkaAccIconGrid from "../../decks/assets/week-09/fcw-lka-acc-icon-grid.svg";
+import aebWarningTimestampOverlap from "../../decks/assets/week-09/aeb-warning-timestamp-overlap.svg";
+import volvoCitySafetyDetectsActs from "../../decks/assets/week-09/volvo-city-safety-detects-acts.svg";
+
 Every alert this course has studied so far, from the oil-pressure idiot light
 to a heads-up navigation arrow, has done the same job: describe a fact about
 the world and leave the response to the driver. The fuel is low. The tyre is
@@ -34,6 +38,11 @@ taking, regardless of what the driver decides. A driver trained by eight
 weeks of dashboards that describe the world is not automatically equipped to
 read one that describes the car's own behaviour instead.
 
+<figure class="dash-figure">
+  <img src={fcwLkaAccIconGrid.src} alt="A grid of dashboard telltale icons for forward-collision warning, lane-keep-assist, and adaptive-cruise-control gap alerts sourced from several manufacturers' owner's manuals, each underlined in one of two colours to mark whether it reports a state or narrates a decision the car is making" />
+  <figcaption>Fig. 9.1 — Same visual grammar, two different grammars underneath: some of these icons report a condition, others narrate an action the car has already taken.</figcaption>
+</figure>
+
 ## The warning can arrive with the intervention, not before it
 
 Every earlier alert type in this course preserves a sequence: the car
@@ -45,6 +54,11 @@ warning explain what already happened. That is a physical constraint of
 time-to-collision, not a design failure — but it asks the driver to interpret
 an alert that may describe the past rather than offer a choice about the
 future.
+
+<figure class="dash-figure">
+  <img src={aebWarningTimestampOverlap.src} alt="A dashboard driver-information display showing a red forward-collision warning icon of a car with radiating lines above an exclamation mark, illuminated at the same moment the vehicle's automatic emergency braking has visibly engaged" />
+  <figcaption>Fig. 9.2 — Warning and braking, timestamped together: the alert here isn't offering the driver a choice, it's narrating a decision already made.</figcaption>
+</figure>
 
 ## Case study: Volvo City Safety, 2008
 
@@ -68,17 +82,28 @@ a distinct, sustained visual cue timed to the onset of any autonomous
 braking, so even a driver with zero warning time can retroactively read "the
 car just intervened" instead of "the car just malfunctioned."
 
-## Suggested reference images
+<figure class="dash-figure">
+  <img src={volvoCitySafetyDetectsActs.src} alt="A press photograph of a first-generation Volvo XC60 dashboard and windscreen, with the City Safety forward-facing sensor visible near the top of the windscreen and the instrument cluster showing no prominent dedicated warning graphic" />
+  <figcaption>Fig. 9.3 — City Safety's sensor is easy to spot; the display logic behind it isn't — most of the time, there's nothing dedicated on the cluster at all.</figcaption>
+</figure>
 
-- A driver-assistance warning display showing an imminent-braking alert, e.g.
-  from a Volvo or comparable AEB-equipped vehicle, ideally captured at the
-  moment the warning and the braking overlap
-- A first-generation Volvo XC60 (2008) instrument cluster or press
-  photograph showing the original City Safety system's forward-facing sensor
-  housing and any accompanying warning display
-- A side-by-side of a "warn only" forward-collision display against a
-  "warn and brake" automatic-emergency-braking display from the same or a
-  comparable manufacturer
+<div class="dash-panel">
+  <span class="dash-panel__label">This week's channel, against the framework</span>
+
+  The almost-autonomous alert, read against the six-question framework
+  introduced in week 1: **urgency** that can be near-total, since the
+  window to act may already have closed; **visibility** unchanged from
+  earlier warning lights — foveal or peripheral depending on placement —
+  but arriving with, not before, the event it describes; **meaning** that
+  has quietly shifted from *state* to *narrated decision*, without the
+  driver being told the grammar changed; still visual-plus-audio
+  **modality**, the same channels week 6 covered; **timing** collapsed to
+  near-zero lead time in the shortest-range cases; and a **required
+  action** that can be nothing at all, because the car has already taken
+  it. City Safety's real design problem is that the framework's own
+  categories blur here — an alert that fires after the action it announces
+  is barely an alert in the sense weeks 1–8 used the word.
+</div>
 
 No assessment is due this week. Next week asks what happens to this more
 assertive vocabulary when it's wrong too often: the trust and alarm-fatigue

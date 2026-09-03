@@ -13,6 +13,9 @@ related:
   - sessions/07-say-it-in-words
 ---
 
+import midVsOldTpmsDisplay from "../../decks/assets/week-07/mid-vs-old-tpms-display.svg";
+import manualTranslationTable from "../../decks/assets/week-07/manual-translation-table.svg";
+
 Last week the dashboard spoke in chimes; this week it starts writing full
 sentences. For most of the instrument cluster's history, text on the dash was
 rationed to the smallest unit that would fit on a seven-segment or dot-matrix
@@ -36,6 +39,11 @@ by construction. "Low tyre pressure — check tyres" cannot be misread as an
 engine problem, cannot be confused with a different icon on a cluttered
 cluster, and requires no prior training. Where an icon asks the driver to
 supply the missing verb, a sentence supplies it for them.
+
+<figure class="dash-figure">
+  <img src={midVsOldTpmsDisplay.src} alt="Side-by-side comparison of a modern multi-information display reading 'Low tyre pressure — check tyres' next to an older instrument cluster showing only a lit tyre icon and the letters TPMS" />
+  <figcaption>Fig. 7.1 — Same fault, two grammars: the acronym asks the driver to already know what TPMS means; the sentence doesn't ask anything.</figcaption>
+</figure>
 
 ## What a sentence costs that a glance doesn't
 
@@ -69,16 +77,27 @@ spends localisation — a cost line that scales with every market the
 manufacturer enters, and one that a badly-funded localisation pass can turn
 into a new source of the exact ambiguity the sentence was supposed to remove.
 
-## Suggested reference images
+<figure class="dash-figure">
+  <img src={manualTranslationTable.src} alt="An owner's manual page listing a tyre-pressure warning message translated into several languages in parallel columns, illustrating varying sentence length for the same meaning" />
+  <figcaption>Fig. 7.2 — The bill for precision: one pictogram ships everywhere; one sentence ships once per market, and has to be re-checked every time.</figcaption>
+</figure>
 
-- A modern multi-information display showing a plain-language warning such
-  as "Low tyre pressure — check tyres," alongside an older cluster showing
-  only a warning icon and a two- or three-letter acronym for the same fault
-- The same manufacturer's owner's manual warning-message table, showing the
-  message translated across two or three languages, to compare phrasing
-  length and directness
-- A dashboard telltale bank next to its corresponding multi-information
-  display text equivalent, to show the icon-plus-sentence pairing in use
+<div class="dash-panel">
+  <span class="dash-panel__label">This week's channel, against the framework</span>
+
+  Plain-language text, read against the six-question framework introduced
+  in week 1: **urgency** the sentence can state directly rather than
+  implying ("check tyres" versus a bare icon); foveal, not peripheral,
+  **visibility** — a driver has to look at and read it, which an icon
+  doesn't require; **meaning** that needs no prior convention, unlike an
+  icon; textual **modality**, the slowest of the channels this course has
+  covered so far; **timing** typically persistent until the fault clears;
+  and a **required action** the sentence can name explicitly ("check
+  tyres") where an icon could only gesture at a category. The trade a
+  sentence makes for that precision is the one thing the framework doesn't
+  price on its own: translation, which is why this week's case study spent
+  as long on the manual page as on the dashboard.
+</div>
 
 Next week the dashboard moves again — off the instrument cluster and onto
 the windscreen itself, where a heads-up display puts text and icons directly

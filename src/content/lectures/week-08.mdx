@@ -13,6 +13,9 @@ related:
   - assessments/redesign-a-warning
 ---
 
+import combinerGlassHud from "../../decks/assets/week-08/combiner-glass-hud.svg";
+import arHudConformalArrow from "../../decks/assets/week-08/ar-hud-conformal-arrow.svg";
+
 Every instrument this course has looked at so far lives below the
 windscreen, in a spot the driver has to choose to look at. That choice costs
 time — half a second down, half a second back up, at 100 km/h roughly 28
@@ -55,6 +58,11 @@ green, monochrome speed readout reflected off a small combiner, solving one
 problem — glancing at the speedometer — and nothing else. Fixed to the car,
 not the world, it could report a number but never point at anything.
 
+<figure class="dash-figure">
+  <img src={combinerGlassHud.src} alt="A raised combiner-glass head-up display unit on a car dashboard, showing a simple green digital speed readout reflected on its small angled surface, with the rest of the windscreen clear" />
+  <figcaption>Fig. 8.1 — The Cutlass Supreme's whole HUD, solving one problem: a number, moved up, nothing else drawn.</figcaption>
+</figure>
+
 Modern augmented-reality HUDs, fitted to various current Mercedes-Benz, BMW
 and other premium models, do something categorically different: they paint
 a navigation arrow onto the actual lane the driver should take, or
@@ -65,14 +73,29 @@ scene: at what point do a navigation arrow, a hazard highlight and a
 following-distance graphic, rendered at once, stop supplementing the road
 and start competing with it?
 
-## Suggested reference images
+<figure class="dash-figure">
+  <img src={arHudConformalArrow.src} alt="A view through a car windscreen at dusk showing a large green directional arrow graphic overlaid so that it appears to lie flat along the driving lane ahead, curving to match the road's perspective" />
+  <figcaption>Fig. 8.2 — Conformal, not just visible: the arrow is drawn onto this specific lane, not merely somewhere in the driver's view.</figcaption>
+</figure>
 
-- A driver's-eye photograph of a 1980s–90s automotive HUD showing a simple
-  green monochrome speed readout low on the windscreen
-- A driver's-eye view through a modern AR-HUD windscreen showing a
-  navigation arrow rendered conformally onto the actual lane ahead
-- A fighter-jet cockpit HUD next to an automotive AR-HUD, to show the
-  lineage directly
+<div class="dash-panel">
+  <span class="dash-panel__label">This week's channel, against the framework</span>
+
+  The HUD, read against the six-question framework introduced in week 1:
+  **urgency** it inherits from whatever it displays rather than adding on
+  its own; **visibility** that is foveal in position but no longer requires
+  refocusing, since the image sits at road depth rather than dashboard
+  depth; **meaning** ranging from self-evident (a conformal arrow drawn
+  onto the actual lane) to fully learned (a bare speed number); **modality**
+  still purely visual, but layered directly over the driving scene instead
+  of beside it; **timing** typically continuous while the underlying data
+  keeps updating; and a **required action** the conformal graphic can make
+  almost automatic ("follow this exact line") in a way a dashboard needle
+  never could. The risk the framework doesn't price on its own is
+  *competition*: stack enough conformal graphics on the one view a driver
+  cannot look away from, and the HUD starts fighting the road for the same
+  attention it was built to protect.
+</div>
 
 Assessment 2, Redesign a Warning, is due this Friday, 16 April — worth
 noting here, since a HUD alert is exactly the kind of multi-channel system

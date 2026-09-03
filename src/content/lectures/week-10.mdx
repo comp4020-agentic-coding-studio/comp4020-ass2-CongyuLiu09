@@ -13,6 +13,10 @@ related:
   - sessions/10-cry-wolf
 ---
 
+import fadedLaneMarkingAlarm from "../../decks/assets/week-10/faded-lane-marking-alarm.svg";
+import airlinerAnnunciatorPanel from "../../decks/assets/week-10/airliner-annunciator-panel.svg";
+import forumComplaintScreenshot from "../../decks/assets/week-10/forum-complaint-screenshot.svg";
+
 A warning that never fires isn't being watched — nobody knows whether it
 works. A warning that fires constantly isn't watched either — the driver has
 learned it doesn't need to be. The only zone where a warning does its job
@@ -30,6 +34,11 @@ lane-departure warning has chimed nine times on a familiar commute for nine
 faded lane markings and zero actual departures, the driver reaches the
 tenth chime already having decided, unconsciously, that this alert is
 noise. The system hasn't changed. The driver's model of it has.
+
+<figure class="dash-figure">
+  <img src={fadedLaneMarkingAlarm.src} alt="A driver's-eye dashboard view showing an illuminated lane-departure warning icon overlaid on a windscreen view of a road with faded, inconsistent white lane markings and no other visible hazard" />
+  <figcaption>Fig. 10.1 — A technically correct alert and a wasted one at the same time: the markings really are ambiguous, and the driver's trust drops regardless of whether the sensor was "right."</figcaption>
+</figure>
 
 ## Two things this isn't
 
@@ -56,6 +65,11 @@ established the basic finding: as an alarm's positive predictive value
 drops, trained operators reliably slow their response to it, and eventually
 stop responding at all.
 
+<figure class="dash-figure">
+  <img src={airlinerAnnunciatorPanel.src} alt="A photograph of a vintage commercial airliner cockpit instrument panel showing rows of amber and red annunciator warning lights alongside a prominent master caution indicator light" />
+  <figcaption>Fig. 10.2 — Where the research started: a panel of alarms trained crews learned to distrust one false trip at a time.</figcaption>
+</figure>
+
 That same research lineage now studies ADAS directly. Lane-departure and
 forward-collision warnings show meaningful false-positive rates under
 specific conditions — faded lane markings, tight urban curves, a stopped
@@ -68,14 +82,28 @@ from both literatures is graded, confidence-scored alerting — a soft cue
 for an ambiguous case, a hard cue reserved for high-confidence ones —
 rather than one binary alarm for every confidence level.
 
-## Suggested reference images
+<figure class="dash-figure">
+  <img src={forumComplaintScreenshot.src} alt="A screenshot of an online consumer complaint or forum post in which a car owner describes repeated false lane-departure or collision warnings on a specific road condition, and states that they disabled the feature as a result" />
+  <figcaption>Fig. 10.3 — The tenth false alarm doesn't just fail to warn — it produces this: the feature turned off, on purpose, by the owner.</figcaption>
+</figure>
 
-- A lane-departure warning triggering on a road with faded or unusual lane
-  markings, a common source of false positives
-- An aviation cockpit alarm panel from a 1970s–80s airliner, for the direct
-  historical parallel to automotive ADAS alerting
-- An owner-forum or survey screenshot of drivers discussing disabling a
-  lane-keeping or forward-collision feature
+<div class="dash-panel">
+  <span class="dash-panel__label">This week's channel, against the framework</span>
+
+  Alarm fatigue itself, read against the six-question framework introduced
+  in week 1: **urgency** the system still states plainly, even after the
+  driver has stopped believing it; **visibility** unchanged, foveal or
+  peripheral depending on the alert type; **meaning** technically intact
+  but functionally degraded — the icon still means what it always meant,
+  the driver just no longer trusts that meaning; **modality** typically
+  visual and audible together, same as week 6; **timing**, the variable
+  that actually does the damage — a system that fires too often trains its
+  own **timing** into irrelevance; and a **required action** the driver
+  increasingly substitutes with a different one entirely: turning the
+  feature off. The framework's five other dimensions can all be individually
+  correct and the system can still fail, because trust decays across
+  repeated firings, not within any single one.
+</div>
 
 No assessment is due this week. Next week: what happens when the same
 alert crosses a border, tuned to a different threshold of "urgent enough"

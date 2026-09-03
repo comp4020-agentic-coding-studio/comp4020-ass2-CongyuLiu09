@@ -15,6 +15,10 @@ related:
   - assessments/instrument-cluster-you-trust
 ---
 
+import softwareDefinedDashboard from "../../decks/assets/week-12/software-defined-dashboard.svg";
+import rivianRelabelledFeature from "../../decks/assets/week-12/rivian-relabelled-feature.svg";
+import otaReleaseNotes from "../../decks/assets/week-12/ota-release-notes.svg";
+
 Every dashboard this course has studied so far, however digital it looked,
 was still a product shipped once. The Mercedes MBUX Hyperscreen in week 1
 could reconfigure its layout, but the alert vocabulary underneath it — what
@@ -65,6 +69,16 @@ miscalibrated, ambiguous, or wrong doesn't have to wait for a model year to
 be fixed, it can be fixed for the entire fleet by Tuesday. The strength is
 real — no other era of dashboard could recall a bad design decision.
 
+<figure class="dash-figure">
+  <img src={softwareDefinedDashboard.src} alt="Photograph of a software-defined-vehicle driver display showing speed, range and status icons rendered on a single digital screen, with no separate physical gauge cluster visible behind it" />
+  <figcaption>Fig. 12.1 — Nothing behind the glass: every gauge this course has studied since week 1 is, here, a rendered surface that can be changed by Tuesday.</figcaption>
+</figure>
+
+<figure class="dash-figure">
+  <img src={rivianRelabelledFeature.src} alt="A Rivian driver display showing driver-assistance status icons and labels, illustrating how a feature's name and icon can be altered by a firmware update rather than a hardware change" />
+  <figcaption>Fig. 12.2 — Same feature, new name: a firmware update relabelled this without touching a single physical part.</figcaption>
+</figure>
+
 The weakness is the one this course hasn't had to name directly until now:
 a driver's mental model of their own dashboard is a learned vocabulary, and
 this course has spent eleven weeks establishing how much cost goes into
@@ -81,16 +95,31 @@ note nobody reads — because week 7 already established that a driver
 cannot be expected to notice a meaning has changed just by looking at the
 same icon.
 
-## Suggested reference images
+<figure class="dash-figure">
+  <img src={otaReleaseNotes.src} alt="A screenshot of an over-the-air software release-notes page listing a brief technical description of a change to a driver-assistance alert's sensitivity, with no further explanation offered to the driver" />
+  <figcaption>Fig. 12.3 — The whole disclosure a driver gets, today, for a change to a vocabulary they spent months learning.</figcaption>
+</figure>
 
-- A Tesla Model 3 or Model Y instrument display, or a comparable software-
-  defined-vehicle cluster, showing how much of its "instrument panel" is
-  actually rendered software rather than dedicated hardware
-- A manufacturer's over-the-air release-notes page (Tesla or Rivian) listing
-  a change to a driver-facing alert or warning behaviour, to see how such a
-  change is actually communicated today
-- A Rivian R1T or R1S driver display showing its driver-assistance status
-  indicators, for comparison against Tesla's touchscreen-only approach
+<div class="dash-panel">
+  <span class="dash-panel__label">This week's channel, against the framework</span>
+
+  The software-defined dashboard, read against the six-question framework
+  that has run through every week of this course: **urgency** thresholds
+  that a manufacturer can now retune after the sale, not just at the
+  factory; **visibility** unchanged in principle but delivered on a
+  rendered surface that can be redesigned overnight; **meaning** the one
+  dimension an OTA update puts most at risk, since a symbol's learned
+  meaning can be quietly redefined without the driver's consent; **modality**
+  still sight, sound and touch, but all of it now software rather than
+  wired hardware; **timing** conventions — chime patterns, escalation
+  points — that can change on a schedule the driver never sees; and a
+  **required driver action** that depends on a vocabulary the driver can no
+  longer assume is stable from one month to the next. Every dimension this
+  course introduced in week 1 still applies to a software-defined vehicle —
+  what's changed is that all six can now move after the sale, which is
+  exactly the design problem the final assessment asks you to take a
+  position on.
+</div>
 
 ## What's due this week
 
