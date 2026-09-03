@@ -1,0 +1,156 @@
+---
+title: Chimes, dings and voices — the sonic register
+description:
+  What makes a warning sound urgent without becoming alarming, examined
+  through the seatbelt chime's regulatory escalation against Tesla's
+  deliberately sparse chime set
+week: 6
+date: 2027-03-29
+teachers:
+  - idris-fenn
+slides: /decks/week-06/
+related:
+  - sessions/06-the-sonic-register
+---
+
+import reversingBeepTempo from "../../decks/assets/week-06/reversing-beep-tempo.svg";
+import chimeFrequencyComparison from "../../decks/assets/week-06/chime-frequency-comparison.svg";
+import teslaCompetitorChimeCount from "../../decks/assets/week-06/tesla-competitor-chime-count.svg";
+import chimeWaveformAnatomy from "../../decks/assets/week-06/chime-waveform-anatomy.svg";
+
+Last week's colour grammar assumed the driver is looking at the dashboard.
+Sound doesn't, which is exactly why it's harder to get right. A red
+telltale only works on someone already looking toward it; a chime reaches
+someone looking at the road, the mirror, a child arguing in the back seat.
+That reach is the whole appeal of the sonic register, and its whole risk —
+a sound that doesn't need your eyes also doesn't stop when you'd like it
+to, and a driver who has learned to tune one out has lost the one channel
+built to work regardless of where they were looking.
+
+## Urgency is not loudness
+
+The easy mistake is to treat volume as a proxy for importance: louder means
+more urgent. It doesn't, reliably. A car can be quiet about something
+critical (a single low chime for a cracked windscreen sensor fault) and
+insistent about something merely inconvenient (a door held slightly ajar).
+Loudness is tuned mainly for audibility over engine and road noise, not for
+communicating rank among warnings — so something else has to carry urgency.
+
+<figure class="dash-figure">
+  <img src={reversingBeepTempo.src} alt="A tempo graph of a reversing-sensor beep sequence showing three clusters of tick marks, spaced widely on the left and merging into a solid bar on the right, illustrating beep interval shrinking as parking distance decreases" />
+  <figcaption>Fig. 6.1 — Distance is encoded entirely in tempo — the beep doesn't get louder, it gets more frequent, until frequency itself becomes a constant tone.</figcaption>
+</figure>
+
+## Four things a designer can actually turn
+
+That something else is a small set of independently adjustable variables:
+pitch (higher reads as more pressing, up to a point where it starts
+reading as a fault rather than a warning), tempo (a faster repeat rate
+reads as closer or more immediate — a parking sensor's beep speeding up as
+the gap closes is the cleanest example on the dashboard), repetition (does
+it sound once, reporting an event, or keep returning, reporting a
+condition that persists), and timbre (a tone, a recorded voice, and a
+melodic "earcon" carry different weight at matched volume). None of these
+is fixed by physics. Each is a decision, legible to any driver who has
+heard enough cars to compare them, even without the words to say why one
+chime feels more frantic than another at the same volume.
+
+<figure class="dash-figure dash-annotated">
+  <img src={chimeWaveformAnatomy.src} alt="A schematic waveform diagram showing three identical wiggling sound bursts spaced along a timeline, with a two-headed arrow marking the gap between the first two bursts and a bracket spanning all three" />
+  <span class="dash-annotated__point" style="--x: 24%; --y: 63%;">
+    <span class="dash-badge dash-badge--advisory">pitch — how dense the wiggle sits</span>
+  </span>
+  <span class="dash-annotated__point" style="--x: 24%; --y: 78%;">
+    <span class="dash-badge dash-badge--advisory">timbre — the curve's own shape</span>
+  </span>
+  <span class="dash-annotated__point" style="--x: 37%; --y: 47%;">
+    <span class="dash-badge dash-badge--caution">tempo — the gap between repeats</span>
+  </span>
+  <span class="dash-annotated__point" style="--x: 50%; --y: 26%;">
+    <span class="dash-badge dash-badge--critical">repetition — how many times it plays</span>
+  </span>
+  <figcaption>Fig. 6.2 — One chime, four independent dials: none of them is "loudness", and a driver can feel the difference between them without having the words for any of the four.</figcaption>
+</figure>
+
+## Process: how a warning sound actually gets deployed
+
+A chime doesn't just "go off" — it moves through a pipeline, and how far it
+is allowed to escalate at the last stage is a policy decision, not a
+technical one.
+
+<div class="dash-flow">
+  <div class="dash-flow__step">
+    <span class="dash-flow__step-label">1. Event detected</span>
+    Sensor reports an unbuckled belt, a closing gap, a lane departure.
+  </div>
+  <div class="dash-flow__step">
+    <span class="dash-flow__step-label">2. Tier assigned</span>
+    The event is classified against a severity scale fixed at development.
+  </div>
+  <div class="dash-flow__step">
+    <span class="dash-flow__step-label">3. Palette queried</span>
+    The tier maps to a specific sound from the manufacturer's library.
+  </div>
+  <div class="dash-flow__step">
+    <span class="dash-flow__step-label">4. Sound played</span>
+    At the volume, pitch and repetition rate that tier specifies.
+  </div>
+  <div class="dash-flow__step">
+    <span class="dash-flow__step-label">5. Response monitored</span>
+    If the condition doesn't clear, the system may escalate — louder,
+    faster, or an added channel such as haptic seat buzz.
+  </div>
+</div>
+
+## Case study: the seatbelt chime's escalation, and Tesla's refusal of it
+
+Regulatory testing regimes have spent two decades pushing the seatbelt
+chime in one direction: louder, more repetitive, harder to ignore.
+Protocols used by NHTSA's New Car Assessment Program and Euro NCAP's Safety
+Assist criteria award manufacturers credit for reminders that escalate —
+not a polite ding, but a chime that gets louder and more frequent, paired
+with a flashing telltale, the longer the belt stays unbuckled while the car
+moves. The logic is defensible: compliance measurably improves when the
+nag gets worse, so testing regimes reward designs that make ignoring the
+belt actively unpleasant. The result is a chime engineered to be annoying
+by design brief, not by accident.
+
+Tesla takes the opposite bet. The seatbelt chime still exists — it's
+federally mandated, not optional — but Tesla generally doesn't layer the
+escalating loop many competitors add once that legal minimum has played.
+Status that would be an ongoing sound elsewhere becomes a persistent but
+silent icon on the touchscreen instead. Where the escalating chime assumes
+a driver who needs discomfort to comply, the minimal set assumes a driver
+who, told once, doesn't need telling again louder. Neither assumption is
+obviously wrong; they're different bets about how much trust a warning
+system extends to the person it's warning.
+
+<figure class="dash-figure">
+  <img src={chimeFrequencyComparison.src} alt="Two stacked spectrograms, the first showing concentrated energy around 2 to 3 kilohertz, the second showing energy concentrated above 4 to 5 kilohertz, both within a shaded band marking human hearing's most sensitive range" />
+  <figcaption>Fig. 6.3 — Both tones sit inside the ear's most sensitive range — the difference in how "urgent" versus "broken" they feel is pitch alone, not loudness.</figcaption>
+</figure>
+
+<figure class="dash-figure">
+  <img src={teslaCompetitorChimeCount.src} alt="Two stacked waveforms of equal length representing a full drive cycle; the lower waveform, labelled as the competitor vehicle, shows many more short sound-event spikes than the upper waveform labelled Tesla, which shows only a few" />
+  <figcaption>Fig. 6.4 — Same length of driving, a fraction of the sound events — the difference isn't one missing chime, it's an entire design philosophy about how often the car should speak.</figcaption>
+</figure>
+
+<div class="dash-panel">
+  <span class="dash-panel__label">This week's channel, against the framework</span>
+
+  Sound, read against the six-question framework: **urgency** is the one
+  variable it can express through several independent dials at once —
+  pitch, tempo, repetition — rather than colour's single hue. Its defining
+  property is **visibility**: it needs none, reaching a driver whose eyes
+  are anywhere at all. **Meaning** is a mix — tempo-as-distance is read
+  almost universally, but which chime maps to which fault is still learned.
+  **Modality** is auditory. **Timing** is this week's real axis, from a
+  single reporting chime to an escalating, repeating one. And the
+  **required action** a sound implies scales with how far a system is
+  allowed to escalate before the driver responds.
+</div>
+
+Next week leaves sound behind and asks what happens when the dashboard
+starts writing in sentences instead of playing tones — the shift from
+acronym to plain language on the multi-info display, and what that costs to
+translate.

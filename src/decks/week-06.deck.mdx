@@ -241,6 +241,24 @@ one.
 
 ---
 
+## The same pipeline, as a diagram
+
+<div class="dash-flow">
+  <div class="dash-flow__step"><span class="dash-flow__step-label">1. Event detected</span>Unbuckled belt, closing gap, lane departure</div>
+  <div class="dash-flow__step"><span class="dash-flow__step-label">2. Tier assigned</span>Classified against a scale fixed at development</div>
+  <div class="dash-flow__step"><span class="dash-flow__step-label">3. Palette queried</span>Tier maps to a sound in the manufacturer's library</div>
+  <div class="dash-flow__step"><span class="dash-flow__step-label">4. Sound played</span>At the volume, pitch and repetition the tier sets</div>
+  <div class="dash-flow__step"><span class="dash-flow__step-label">5. Response monitored</span>Escalates if the condition doesn't clear</div>
+</div>
+
+```comment
+Keep this slide visually next to step 5 in the previous slide's numbered
+list — the diagram exists so a pointer can land on box 5 specifically when
+introducing the case study, rather than the room re-reading a numbered list.
+```
+
+---
+
 {/* _class: banner */}
 
 ## Case study: two philosophies for step 5
@@ -336,6 +354,43 @@ legible, defensible bets about trust, not that one is simply correct.
 
 ---
 
+## This week's channel, against the framework
+
+<div class="dash-panel">
+  <span class="dash-panel__label">Sound, against the six-question framework</span>
+
+  **Urgency** is the one variable sound can express through several
+  independent dials at once — pitch, tempo, repetition — rather than
+  colour's single hue. Its defining property is **visibility**: it needs
+  none, reaching a driver whose eyes are anywhere at all. **Meaning** is
+  mixed — tempo-as-distance reads almost universally, but which chime maps
+  to which fault is still learned. **Modality** is auditory. **Timing** is
+  this week's real axis, from a single reporting chime to an escalating,
+  repeating one. The **required action** scales with how far a system is
+  allowed to escalate before the driver responds.
+</div>
+
+---
+
+## Common misconception: "louder means more urgent"
+
+It doesn't, reliably — this deck already showed the counter-example: a
+single modest chime for a cracked windscreen sensor, a loud repeating one
+for a door left slightly ajar. If loudness tracked real stakes, those two
+would be reversed. Loudness is mostly tuned for audibility over cabin
+noise, not for ranking warnings against each other — pitch, tempo,
+repetition and timbre are doing that job instead, and a driver who
+conflates "loud" with "important" is reading the wrong dial.
+
+```notes
+This is the same point as the "mistake" slide near the start of the deck,
+restated explicitly as a misconception for the recap — worth naming twice
+because it's the single most common wrong intuition students bring into
+this week already.
+```
+
+---
+
 ## Exercise: redesign one chime's escalation policy
 
 Pick one dashboard alert from this week's studio listening set (seatbelt,
@@ -362,6 +417,34 @@ notice that "escalate" doesn't have to mean "louder," it can mean
 "switch channel entirely." Push groups that default to "just make it
 louder" to justify why volume is the right lever versus tempo,
 repetition, or channel change.
+```
+
+---
+
+## Exercise debrief: a model answer
+
+Two answer-shapes tend to cover most redesigns:
+
+1. **Time-boxed escalation** (a good fit for seatbelt-style faults): first
+   sound is short and quiet; if the belt is still unbuckled after a fixed
+   interval, it escalates in volume and repetition; it stops only when the
+   belt is fastened, never on a timer, because the underlying problem isn't
+   fixed by waiting it out.
+2. **Channel-switch escalation** (a good fit for lane-departure, matching
+   what many real systems already do): first response isn't louder at
+   all — it switches channel entirely, from a chime to steering-wheel
+   haptic feedback, on the logic that a second independent channel is more
+   likely to be noticed than the same channel turned up.
+
+The real constraint being tested: "escalate" doesn't have to mean "louder" —
+it can mean faster, more repetitive, or an entirely different channel, and
+the right lever depends on whether the fault is a one-off event or an
+ongoing condition.
+
+```notes
+Push groups that defaulted straight to "just make it louder" to justify
+that choice against tempo, repetition, or a channel switch — most can't,
+which is the point: volume is the laziest lever, not the only one.
 ```
 
 ---

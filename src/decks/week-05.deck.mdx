@@ -131,6 +131,25 @@ study, the colour-blindness failure, the comparison slide) is really asking
 
 ---
 
+## The same chain, as a diagram
+
+<div class="dash-flow">
+  <div class="dash-flow__step"><span class="dash-flow__step-label">1. Fault detected</span>A sensor crosses a threshold</div>
+  <div class="dash-flow__step"><span class="dash-flow__step-label">2. Severity classified</span>Mapped to critical / advisory / informational</div>
+  <div class="dash-flow__step"><span class="dash-flow__step-label">3. Colour assigned</span>Red / amber / green or blue, by tier</div>
+  <div class="dash-flow__step"><span class="dash-flow__step-label">4. Telltale lit</span>In that colour, usually with its icon</div>
+  <div class="dash-flow__step"><span class="dash-flow__step-label">5. Peripheral vision</span>Colour resolves before the icon is identified</div>
+  <div class="dash-flow__step"><span class="dash-flow__step-label">6. Judgement made</span>Stop / note it / no action — often pre-verbal</div>
+</div>
+
+```comment
+Point directly at step 5 here when you get to the colour-blindness case
+study a few slides on — it's the one link in this whole chain that can
+silently fail, and everything after it in the deck is really about that.
+```
+
+---
+
 ## Three tiers, not thirty
 
 A dashboard could, in principle, use a wide colour gradient to express fine
@@ -305,6 +324,43 @@ lived experience of roughly 1 in 12 men on every drive they take.
 
 ---
 
+## This week's channel, against the framework
+
+<div class="dash-panel">
+  <span class="dash-panel__label">Colour, against the six-question framework</span>
+
+  It **is** the fastest available proxy for **urgency**, delivered through
+  **peripheral** visibility rather than foveal — the whole bet is that it
+  works before a driver looks straight at it. Its **meaning** is almost
+  entirely pre-learned, borrowed from rail and traffic signalling.
+  **Modality** is visual only, which is exactly its failure point.
+  **Timing** persists for as long as the tier holds, and the **required
+  action** it implies is coarse but immediate: stop, attend, or ignore,
+  before any icon is read.
+</div>
+
+---
+
+## Common misconception: "if a light is red, every driver reads it as urgent"
+
+Most do. Roughly 1 in 12 men do not — not because they're inattentive, but
+because red and green, the two colours this entire system leans on hardest,
+render as close to the same washed-out brownish-yellow under the most
+common form of colour-blindness. The misconception isn't wrong about most
+drivers; it's wrong about treating "most" as "all," on a channel that was
+specifically chosen because it's supposed to work without anyone having to
+try.
+
+```notes
+Callback to the framework slide: the misconception is really a
+visibility/modality confusion — colour delivers urgency fast for a driver
+whose colour vision works, but the framework doesn't say "for most
+drivers," it asks the question for every channel, every week, without an
+exception baked in for the common case.
+```
+
+---
+
 ## Classroom exercise: audit a cluster for colour-only risk
 
 Working from a real dashboard photo (yours, a classmate's, or a manual
@@ -332,6 +388,33 @@ worst offenders — small, colour-only, low-contrast icons that were designed
 assuming the colour tier alone was legible. Push groups toward proposing
 position as the cheapest fix: a fixed "problem zone" on the left of the
 cluster reserved for anything red-tier, regardless of colour rendering.
+```
+
+---
+
+## Exercise debrief: a model answer
+
+Two answer-shapes cover most audits:
+
+1. **Telltales that already survive colour loss** — brake, battery and oil
+   warnings usually have distinct icon shapes layered on top of colour, so
+   even under deuteranopia the shape alone still resolves which fault it is.
+2. **Telltales that don't** — confirmation lights (cruise control active,
+   seatbelt fastened, daytime-running-lights on) are the recurring
+   offenders: small, colour-only, low-contrast icons designed as if the
+   colour tier alone would always be legible.
+
+The real constraint being tested: redundancy has to be built in at design
+time, because a colour-blind driver can't add shape or position back to an
+existing telltale themselves. The cheapest fix groups often land on is
+reserving a fixed cluster *position* — a "problem zone" — for anything
+red-tier, so tier is recoverable from where a light is, not only its hue.
+
+```notes
+Harder unresolved question to leave the room with: is it the
+manufacturer's job to test every telltale against a colour-blindness
+simulation before shipping, or does that responsibility belong to the
+regulator writing the ISO/SAE standard in the first place?
 ```
 
 ---
