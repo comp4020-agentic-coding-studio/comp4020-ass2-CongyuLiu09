@@ -6,100 +6,133 @@ I built **SLOP3030 — Dashboard Language: How Cars Talk to Drivers**, a fiction
 
 The course treats the dashboard as a communication system operating under time pressure rather than simply a collection of instruments. Across lectures, exercises, case studies and interactive material, students repeatedly analyse automotive interfaces through six questions: urgency, visibility, meaning, modality, timing and required driver action.
 
-The final site combines a twelve-week curriculum, substantial lecture decks, real automotive examples, image-based explanation, process diagrams and an interactive Warning Priority Lab.
+The final site combines a twelve-week curriculum, substantial lecture decks, real automotive examples, image-based explanation, process diagrams and an interactive Warning Priority Lab. The course became less about generating enough pages and more about establishing a repeatable teaching and design system that could hold those pages together.
 
 ## The moments that mattered
 
-### 1. Building a teaching structure instead of generating content-shaped slides
+### 1. Turning slide quantity into a teaching structure
 
-An early problem was that requesting more lecture content did not necessarily create better teaching. A deck could contain twenty slides and still be little more than twenty variations of headings and bullet points.
+An early problem was that requesting more lecture content did not necessarily create better teaching. A deck could contain twenty slides and still be twenty variations of headings and bullet points.
 
 I redirected the agent to treat slide count as a minimum amount of teaching rather than a formatting target.
 
 > For the slide decks, do not treat "20 slides" as a formatting target. Treat it as a minimum amount of teaching material. I want real lecture content, with images, diagrams, process explanations, comparisons, exercises and case studies.
 
-This led to reusable teaching patterns rather than independently generated weekly decks. The structure became concept → example → process → comparison → application → exercise → reflection.
+This led to a recurring teaching sequence: **concept → example → process → comparison → application → exercise → reflection**. That structure gave me a way to judge a deck by what students could learn from it rather than by how many slides existed.
 
-That pattern gave the rest of the course a consistent teaching rhythm and made it easier to judge whether a week was actually explaining something rather than simply containing enough material.
+The later lecture revisions in [`5c3e237`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/5c3e237) applied this more explicitly, adding real images, process diagrams and corrected decks to the early weeks.
 
-### 2. Using Week 3 as a reference, then scaling the standard across the course
+### 2. Using Week 3 as a benchmark, then refusing to leave it as the exception
 
-The course had a large scope: twelve weeks, lecture decks, exercises, real-world examples and interactive material. A breadth-first pass produced uneven depth, so I initially used Week 3 as a reference implementation.
+The course had a large scope: twelve weeks, decks, exercises, real-world examples and interactive material. A breadth-first generation pass risked producing a lot of superficially complete content with uneven depth.
+
+I initially used Week 3 as the reference implementation.
 
 > Use a depth-first flagship approach. Use Week 3 as the reference implementation for all other weeks.
 
-The Week 3 revisions in [`327d45a`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/327d45a) and [`c3d18ee`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/c3d18ee) established the recurring analytical framework of urgency, visibility, meaning, modality, timing and required driver action.
+That worked as a way to establish the standard, but it created a second problem: a strong Week 3 was not enough if the rest of the semester remained shallower.
 
-The important next step was not leaving Week 3 as the only strong week. I redirected the agent to audit and improve the rest of the course using the same standard.
+I therefore changed the instruction:
 
 > Do not focus only on Week 3 anymore. Perform a full Week 1–12 audit and revision. Every week must include substantive teaching, real automotive examples, image-based explanation, a process or flow, an applied exercise and a clear connection to the rest of the semester.
 
-The first scaling pass landed in [`5c3e237`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/5c3e237), where Weeks 1–2 gained real image embeds, the shared analytical framework, process diagrams and corrected lecture decks.
+The first clear scaling pass is visible in [`5c3e237`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/5c3e237), where Weeks 1–2 gained real image embeds, the shared analytical framework, process diagrams and repaired lecture decks.
 
-I then continued revising the MDX teaching material in [`7b3d8a9`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/7b3d8a9), focusing on making the written pages support the same teaching depth as the decks.
+I continued revising the teaching MDX in [`7b3d8a9`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/7b3d8a9).
 
-This changed the role of Week 3: it stopped being the finished exception and became a quality benchmark for the rest of the semester.
+The important change was that Week 3 stopped being the finished exception. It became a benchmark against which the other weeks could be inspected and improved.
 
-### 3. Making images part of the explanation rather than decoration
+### 3. Making images do teaching work
 
-The course topic depends heavily on visual interpretation, but simply adding car or dashboard photographs would not improve the teaching.
+Dashboard communication is inherently visual, but adding photographs alone did not make the course easier to understand. A photograph of a car interior can still be decoration.
 
-I therefore required every important image to have a specific teaching purpose.
+I added a stronger rule:
 
 > For every image, explicitly state the teaching purpose. If an image could be removed without reducing understanding, it is probably decorative and should be replaced with a more useful visual.
 
-This meant real automotive imagery needed to show something students could inspect: icon hierarchy, warning placement, information density, HUD layering, alert escalation or differences between interface approaches.
+This shifted the role of imagery. Students should be directed toward something specific: warning placement, hierarchy, information density, HUD layering, icon ambiguity or differences between two interface approaches.
 
-The Week 1–2 revision in [`5c3e237`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/5c3e237) was the first deliberate pass at embedding real examples directly into the teaching sequence rather than treating visuals as page decoration.
+The image and content work in [`5c3e237`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/5c3e237) and the later MDX revision in [`7b3d8a9`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/7b3d8a9) pushed the weekly material toward this model.
 
-The aim was that students should be able to answer not just “what car is this?” but “what is this interface trying to communicate, what should I notice, and why was it designed this way?”
+The test I used became simple: students should be able to answer not only **what is shown?**, but also **what should I notice, what is the vehicle communicating, and why does that design decision matter?**
 
-### 4. Giving the course an automotive visual language without making a fake dashboard
+### 4. Giving the site an automotive identity without turning it into a fake cockpit
 
-The content became specific to SLOP3030 before the visual design did. The site initially remained close to the stock university theme.
+The teaching content developed its own identity before the interface did. The first versions still felt close to the stock university theme.
 
-A literal digital cockpit was one possible direction, but I rejected it because it risked becoming a novelty interface and reducing readability.
+One obvious option was to imitate a digital dashboard literally, but I rejected that because it risked turning the course into a novelty interface and reducing readability.
 
 > Do not turn the website into a literal fake car dashboard. Borrow appropriate visual characteristics such as instrument hierarchy, restrained status colours, precise labels, structured information zones and diagnostic-style diagrams.
 
-The first visual-system revision landed in [`7af4d90`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/7af4d90), followed by further refinement in [`5f7dc0c`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/5f7dc0c).
+The visual treatment changed in [`7af4d90`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/7af4d90), was refined again in [`5f7dc0c`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/5f7dc0c), and developed into the dark-theme direction in [`e9e0210`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/e9e0210).
 
-The dark-theme direction in [`e9e0210`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/e9e0210) completed the stronger visual identity.
+The useful part of the dark theme was not darkness itself. The improvement came from using hierarchy, structured panels, spacing and restrained alert emphasis consistently enough that the course looked related to automotive information design while still functioning as a university course site.
 
-The useful part of the theme was not simply the dark background. It was the consistent use of hierarchy, status emphasis, panels, spacing and restrained alert colours to make the course feel automotive while still behaving like a course website.
+### 5. Making interaction explain competing priorities
 
-### 5. Replacing a simple interaction model with a problem about competing priorities
+One lesson I carried directly from Assignment 1 was that a technically correct interaction can still explain something too simple.
 
-One of the clearest lessons from Assignment 1 was that a technically correct interaction can still explain a concept that is too simple.
-
-For this course, I required interaction to reveal relationships that would be harder to understand through static text alone.
+For SLOP3030 I added a stronger requirement:
 
 > Every major interactive component should help students understand something that is difficult to explain with static text alone.
 
-This led to the **Warning Priority Lab**, where students reason about simultaneous vehicle warnings rather than identifying isolated icons. The problem involves competing urgency, limited attention, visual priority, sound, persistence and required driver action.
+That led to the **Warning Priority Lab**. Rather than asking students to identify a warning icon, it asks them to reason about simultaneously valid warnings competing for limited driver attention.
 
-Several warnings may all be legitimate, but they should not all demand the same amount of attention. That trade-off is the content of the interaction.
+The problem involves urgency, visual priority, sound, persistence, timing and required driver action. Several alerts may all be correct, but they should not all communicate with equal intensity. The trade-off itself becomes the subject of the interaction.
 
-After the simulator existed, I also noticed that an interaction students could not naturally discover through the course navigation was not really part of the course experience. I connected the Warning Priority Lab into the site's own navigation in [`8c79c98`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/8c79c98).
+I later noticed another problem: an interactive tool that existed but could not be naturally discovered by students was still outside the real teaching flow. I connected the Warning Priority Lab into the site's navigation in [`8c79c98`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/8c79c98).
 
-This was a small implementation change but an important course-design change: the simulator became part of the teaching path rather than an isolated feature.
+That turned the simulator from an isolated feature into part of the course structure.
 
-### 6. Removing the last traces of the starter
+### 6. Turning my agent workflow into an explicit harness
 
-Late in the process, `pnpm check:evidence` showed that several starter images and a `STARTER_CONTENT` marker still remained even though the course itself was already functional.
+The biggest process change was not a page or component. It was changing how I instructed the agent.
 
-I treated that as a polish problem rather than just a failing check. The remaining placeholder artwork weakened the course identity and made the submission visibly dependent on the template.
+Earlier in the project, I could still ask for broad finished outputs and then react to what came back. As the course grew, that produced uneven content and made it harder to distinguish a real design decision from another generation pass.
+
+I changed the workflow toward:
+
+**inspect → identify the problem → consider alternatives → constrain → implement → review → test → refine**
+
+I then moved those lessons into the project's actual harness rather than leaving them only in this retrospective.
+
+The revised `CLAUDE.md` in [`4843f07`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/4843f07) now explicitly requires the agent to inspect existing work before changing it, preserve strong material, consider alternatives for meaningful decisions, verify work in the browser, and audit all twelve weeks rather than declaring the course complete from a sample.
+
+It also records course-specific quality constraints for:
+
+* curriculum coherence;
+* real-world examples;
+* image-based teaching;
+* process diagrams;
+* twenty-plus-slide teaching decks;
+* applied exercises;
+* interaction complexity;
+* visual polish.
+
+This was important because the process improvements became instructions that could affect later agent behaviour, not just observations written after the work was done.
+
+### 7. Treating failed checks as design evidence
+
+Near the end of development, `pnpm check:evidence` found remaining starter artwork and a `STARTER_CONTENT` fragment even though the site was already functional.
+
+I treated that as more than a technical submission error. Placeholder material weakened the course identity and showed that functional completeness was not the same thing as polish.
 
 I replaced the remaining starter imagery in [`29668b6`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/29668b6).
 
-This reinforced an important distinction I kept returning to during the assignment: functional completeness was not the same as finished work.
+That experience also became part of the harness: failed checks are now treated as evidence that something still needs investigation rather than as obstacles to bypass.
 
 ## Before shipping
 
-Before shipping, I used the repository checks and browser-based functional testing rather than relying only on static code inspection.
+Before shipping, I used repository checks and browser-based functional testing rather than relying only on source-code inspection.
 
-I checked the navigation, weekly teaching pages, slide decks, Warning Priority Lab and responsive layouts. I also used the evidence check to identify starter content that still needed replacement.
+I checked navigation, weekly teaching pages, lecture decks, real-image rendering, the Warning Priority Lab and responsive layouts. I also used `pnpm check:evidence` to find content that still belonged to the starter rather than SLOP3030.
 
-The later course passes in [`5c3e237`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/5c3e237) and [`7b3d8a9`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/7b3d8a9) were particularly important because they moved the project beyond a strong flagship week and toward a consistently taught course.
+After the later curriculum and MDX revisions, I also revised this process account in [`2c38933`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/2c38933) so that it reflected the actual later workflow rather than freezing the story at the earlier Week 3 stage.
 
-The main change in my workflow was therefore from asking the agent for finished output to directing a repeated cycle of **inspect → identify weakness → constrain → revise → test → scale**. That made the final course more coherent than a single broad generation pass would have been.
+The final harness revision in [`4843f07`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass2-CongyuLiu09/commit/4843f07) captures the main lesson of the assignment: stronger results came from directing the agent through explicit problems, constraints, review and verification rather than asking it to generate complete artefacts in one pass.
+
+The overall workflow became:
+
+**inspect → identify weakness → direct → revise → verify → scale**
+
+That is the main difference between how I began the project and how I finished it.
